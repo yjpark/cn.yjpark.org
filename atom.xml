@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[YJ Park 之程序人生]]></title>
+  <link href="http://cn.yjpark.org/atom.xml" rel="self"/>
+  <link href="http://cn.yjpark.org/"/>
+  <updated>2015-02-23T13:20:00+08:00</updated>
+  <id>http://cn.yjpark.org/</id>
+  <author>
+    <name><![CDATA[YJ Park]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[独立游戏程序员生存指南]]></title>
+    <link href="http://cn.yjpark.org/blog/2015/02/23/indie-game-developer-survival-guide/"/>
+    <updated>2015-02-23T13:10:18+08:00</updated>
+    <id>http://cn.yjpark.org/blog/2015/02/23/indie-game-developer-survival-guide</id>
+    <content type="html"><![CDATA[<h2>缘起</h2>
+]]></content>
+  </entry>
+  
+</feed>
