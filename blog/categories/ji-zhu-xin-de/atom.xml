@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[YJ Park 之程序人生]]></title>
-  <link href="http://cn.yjpark.org/atom.xml" rel="self"/>
+  <title><![CDATA[Category: 技术心得 | YJ Park 之程序人生]]></title>
+  <link href="http://cn.yjpark.org/blog/categories/ji-zhu-xin-de/atom.xml" rel="self"/>
   <link href="http://cn.yjpark.org/"/>
   <updated>2015-02-24T16:55:57+08:00</updated>
   <id>http://cn.yjpark.org/</id>
