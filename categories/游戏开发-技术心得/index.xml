@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>游戏开发 技术心得 on YJ Park 之程序人生</title>
+    <link>http://cn.yjpark.org/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91-%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/</link>
+    <description>Recent content in 游戏开发 技术心得 on YJ Park 之程序人生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <managingEditor>yjpark@gmail.com (YJ Park)</managingEditor>
+    <webMaster>yjpark@gmail.com (YJ Park)</webMaster>
+    <copyright>This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</copyright>
+    <lastBuildDate>Thu, 26 Feb 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://cn.yjpark.org/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91-%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>游戏开发架构中的数据与元数据</title>
+      <link>http://cn.yjpark.org/blog/2015/02/26/data-and-metadata-in-game-development-architect/</link>
+      <pubDate>Thu, 26 Feb 2015 00:00:00 +0000</pubDate>
+      <author>yjpark@gmail.com (YJ Park)</author>
+      <guid>http://cn.yjpark.org/blog/2015/02/26/data-and-metadata-in-game-development-architect/</guid>
+      <description>
+
+&lt;p&gt;从 2012年4月开始，一直都在开发一款平板电脑上的实时战略类游戏，开发平台是当下比较流行的 Unity3D，网络传输部分基于 uLink。是我自己的第一个 Unity3D 项目，在架构上下了不少功夫，项目相对比较复杂，作为架构师和主要的开发者（技术团队一共3个人，其他两个经验都比较少），工作量着实不小，开发过程还是相当痛苦的，相对应的收获也很不少。&lt;/p&gt;
+
+&lt;p&gt;目前项目的技术部分基本上算是告一段落，下一步更多的是市场和运营的工作，我的重心也会向服务器管理的部分转移，计划陆续把项目中的心得体会在这里用文字的形式保留一下。&lt;/p&gt;
+
+&lt;h2 id=&#34;数据:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;数据&lt;/h2&gt;
+
+&lt;p&gt;其实广义的说，与计算机相关的所有的信息，包括代码，可执行文件，网络数据包，一切的一切都是数据，取决于从什么方向来看，比如说，源代码是编译器的输入数据，相应的可执行文件则是编译器的输出数据；从操作系统的角度来看，可执行文件就变成了输入数据。&lt;/p&gt;
+
+&lt;h2 id=&#34;元数据:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;元数据&lt;/h2&gt;
+
+&lt;p&gt;元数据简单的说就是关于数据的数据，听上去可能比较抽象，其实并没有什么特别之处，例如关系式数据库中数据库的模式就是一种典型的元数据，定义了数据表的内容格式，包含哪些列，各自的数据类型及取值的约束，索引的定义等等，表中存储的内容是数据，模式就是数据的数据，也就是元数据。&lt;/p&gt;
+
+&lt;h2 id=&#34;数据与元数据的关系:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;数据与元数据的关系&lt;/h2&gt;
+
+&lt;p&gt;对于软件系统来说，元数据往往是输入数据的一部分，而数据则是输出数据。元数据会影响系统对待数据的方式，此外元数据和数据往往是一对多的关系。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;这里的输入输出并不是绝对的，比较复杂的系统往往会有多重体现，例如：可能会提供元数据的编辑工具（例如游戏中提供了地图编辑的功能），则对于工具来说，元数据就成了输出数据。&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;另外，大部分情况下，数据即是输入也是输出的，例如对文本编辑器来说，对文本文件既会读取，也会写入。&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;架构与元数据的关系:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;架构与元数据的关系&lt;/h2&gt;
+
+&lt;p&gt;个人体会，架构的核心功能就是对元数据的定义、解析，和执行，只能以一种方式运行的代码不能称之为架构，必然要根据具体的元数据（广义上也包含构建于架构之上的逻辑代码）来执行不同的逻辑规则。&lt;/p&gt;
+
+&lt;p&gt;架构中的元数据并不仅限于类似数据库模式或者页面模板这种具体的形式，也包括比较抽象的形式，例如对于实现类中特定方法的定义等等，像是 Ruby on Rails，或是 Django 这类大量基于惯例的架构就更是大量定义这种抽象类型的元数据，有些甚至可以称之为元数据的元数据。&lt;/p&gt;
+
+&lt;p&gt;领域专属语言，则是这种关系达到最大程度的结果：&lt;code&gt;软件系统 = 架构 + 元数据&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;游戏开发架构中的数据与元数据:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;游戏开发架构中的数据与元数据&lt;/h2&gt;
+
+&lt;p&gt;终于进入正题，下面就以我们的游戏中各个兵种的定制系统为例，具体解释一下。&lt;/p&gt;
+
+&lt;p&gt;游戏中玩家只负责划线指挥位置的移动，各个单位的运行逻辑是类似 AI 的方式，会根据当前自身的状态，玩家的命令，周边的环境以及敌军、友军的具体情况产生行动。游戏的可玩性很大程度上来自于各个兵种的设计，例如远程攻击的能力，近战的攻防能力，攻击速度；特殊兵种的独特技能，例如忍者在运动时可以隐身，医生可以恢复周围友军的生命值等等。为了达到更大的多样性，每个单位还可以叠加特殊设定，简单的可能是数值的加成，复杂的则可以提供额外的特殊技能。&lt;/p&gt;
+
+&lt;p&gt;策划提出的要求是能在不需重新编译的情况下调整参数，例如各兵种的移动速度，加成的数值等等，似乎要求不高，也很容易实现。然而游戏开发中的不确定因素其实很大，往往会做大量的修改，如果用常规的方式，逐一实现功能，来来回回的修改恐怕会带来相当大的工作量。&lt;/p&gt;
+
+&lt;p&gt;原型版本中实现的相对简单，自己写了第一个版本，基于行为树的模型，实现了基本的攻击逻辑，后来让另一个程序员接手，加了不少功能，又改了若干次需求，后来复杂性失控了，出现很多问题，经常行为就不对了，最明显的就是敌我双方非常友好的转来转去，就是不动手。&lt;/p&gt;
+
+&lt;p&gt;本想凑合着先改改用着，策划说是不行了，必须彻底修好，而且好多新技能还没加，旧的代码是不可能支持了。最后还是花了近两个月的时间，把这部分彻底重写了一遍，基本上提供了一个小型的领域专属语言。策划通过 Json 的形式，利用系统支持的底层组件，可以自由定义兵种，加入新的技能、装备，效果相当不错。这些 Json 格式的元数据保存在单独的目录中，不需要重新编译的情况下可以自由修改。&lt;/p&gt;
+
+&lt;h2 id=&#34;面向元数据开发的优点:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;面向元数据开发的优点&lt;/h2&gt;
+
+&lt;h3 id=&#34;技术与策划分工明确:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;技术与策划分工明确&lt;/h3&gt;
+
+&lt;p&gt;最重要的一点就是把各工种的责任划分的比较清晰，技术负责实现架构和各个子模块，策划负责通过提供元数据的方式进行具体的设计与定制。&lt;/p&gt;
+
+&lt;p&gt;通过简单的培训，和基本完整的文档，我们的策划写了上百个 Json 文件，把所有的技能、装备都实现了一遍，有些自定义的技能达到了相当复杂的程度。整个过程中我的角色都是技术支持，前期答疑、做些示例，后期主要是调试，增加一些新的组件。双方都很满意，策划可以自己实现想要的效果，我也可以集中精力在可重用的工作上。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;之前看到过有些项目里修改一个简单的参数都必须由程序员负责，有些“乐于助人”的程序员也没觉得这样的方式有问题。个人认为程序员的工作应该更多的是提供工具，由最适合的角色使用这些工具来产生具体的数据或是元数据。任何简单的重复性工作都是对程序员时间的浪费，需要通过技术的手段解决。&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;推动对问题领域的充分理解:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;推动对问题领域的充分理解&lt;/h3&gt;
+
+&lt;p&gt;如果你是一名程序员的话，相信对于需求提供方的种种不靠谱行为应该都有些切身体会吧，很多时候其实他们根本就不知道，又需要做出决定才能推进项目开展，于是往往随便想想，就埋下了种种坑。这种时候最怕的是特别天真的程序员，真是让做什么就做什么，让怎么改就怎么改，如果是原型阶段，那就一切都好，否则代码就越来越让人纠结了。&lt;/p&gt;
+
+&lt;p&gt;在项目前期，程序员自身对相关领域不甚了解，策划者同样不会有清晰的目标（做山寨产品自然另当别论）。需求稳定的一个解决方式是提出有效的问题，用元数据的方式看待系统可以帮助我们找到最重要的未知因素，从而得到根本性的问题，在推动策划回答这些问题时，共同把产品变得渐渐清晰。&lt;/p&gt;
+
+&lt;h3 id=&#34;稳定性-灵活性:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;稳定性、灵活性&lt;/h3&gt;
+
+&lt;p&gt;如果不能做到比较清晰的模块化，想提供元数据的运行引擎是不可能的。稳定性与灵活性，其实都来自于更好的模块化。&lt;/p&gt;
+
+&lt;p&gt;当然，只有正确的理念决不能保证具体实现的正确和优雅，开发过程中会碰到无数小的决策，如果不是非常认真的对待代码的组织与重用，代码库劣化的速度是很可怕的。&lt;/p&gt;
+
+&lt;h3 id=&#34;易于管理:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;易于管理&lt;/h3&gt;
+
+&lt;p&gt;由于元数据和系统本身有着清晰的界限，元数据的管理本质上变成了数据的管理，像是在我们的系统中，对于核心战斗逻辑的调整，在系统提供的空间内只是若干文件的更新而已。&lt;/p&gt;
+
+&lt;h2 id=&#34;面向元数据开发的缺点:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;面向元数据开发的缺点&lt;/h2&gt;
+
+&lt;p&gt;世上没有免费的午餐，也没有解决一切问题的银弹，面向元数据开发的方式也存在很多缺点，需要针对具体的场合来判断是否值得。&lt;/p&gt;
+
+&lt;h3 id=&#34;前期准备工作要求比较高:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;前期准备工作要求比较高&lt;/h3&gt;
+
+&lt;p&gt;开发的过程比较类似阶段性的，前期出功能会很慢，还经常需要返工式的调整。&lt;/p&gt;
+
+&lt;p&gt;个人的经验是对于第一个功能选择一定会慎重，很可能需要通过几种不同的实现方式提高自己对领域和解决方案的理解，也需要大量的对相关知识的学习。这个阶段不怕慢，也不怕返工，最怕的是暴露不出问题来，大规模上实现才发现架构上的不足。&lt;/p&gt;
+
+&lt;p&gt;在没有得到足够信息之前，都会有一种心里没底的感觉，这时一定要坚持，往往是一段时间过去，写了一定量的代码（其中相当一部分都是被扔掉的），不知不觉就有把握了，感觉清晰的掌握了系统“应该”的实现方式。这时架构基本成型，功能的实现一下子就快起来了。&lt;/p&gt;
+
+&lt;h3 id=&#34;设计与开发过程比较复杂:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;设计与开发过程比较复杂&lt;/h3&gt;
+
+&lt;p&gt;设计一个合适的、好用的元数据模型很不容易，合理的实现同样颇有挑战性，对于程序员的要求是相当高的，大多部分又是经验的积累，没有速成的捷径。&lt;/p&gt;
+
+&lt;p&gt;如果团队不具备足够的能力，可能还是简单直接的开发方式更加适合，当然这种情况下，最好能尽量简化产品的技术需求，否则项目开发到了后期，很可能会出现技术搞不定的结果。&lt;/p&gt;
+
+&lt;h3 id=&#34;对策划人员要求比较高:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;对策划人员要求比较高&lt;/h3&gt;
+
+&lt;p&gt;提供了工具，策划就不是只动嘴的工作了，必须亲手来应用这些工具才行，如果系统比较复杂的话，还需要使用领域专属语言进行二次开发，这些都对逻辑的要求比较高。&lt;/p&gt;
+
+&lt;h3 id=&#34;调试:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;调试&lt;/h3&gt;
+
+&lt;p&gt;抽象层次增加后，一旦出现问题，调试起来会格外复杂。个人经验有下面几点：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;元数据的校验必不可少，通过很常规的检查就能发现元数据格式上的大部分问题，这样的代码写起来比较无聊，不过价值很大，所以不能偷懒。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;调试基础架构要尽早准备好，我们的系统中会在日志中产生关键的调试信息，开始并没有很完善的工具函数来标准化调试的格式。后期功能复杂后，很不容易使用。最终实现了这些工具，保证所有调试信息的统一，并提供了基于 Unity3D Editor 的过滤功能，调试起来效率得到了数倍的提高。不过早期的代码就没有完全调整了，所以说应该尽早准备好。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;具体的底层模块尽量设计的短小、简单，只完成必不可少的功能。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;避免集中式的控制代码，能通过低耦合方式实现的，尽量避免直接的依赖关系。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;示例:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;示例&lt;/h2&gt;
+
+&lt;p&gt;``` json 基本医疗技能
+{
+    &amp;ldquo;abilities&amp;rdquo;: [{
+        &amp;ldquo;skills&amp;rdquo;: [{
+            &amp;ldquo;type&amp;rdquo;: &amp;ldquo;repeat_trigger&amp;rdquo;,
+            &amp;ldquo;interval&amp;rdquo;: 2.0,
+            &amp;ldquo;kind&amp;rdquo;: &amp;ldquo;doctor_heal&amp;rdquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    }],
+    &amp;quot;define&amp;quot;: {
+        &amp;quot;doctor_heal_amount&amp;quot;: 60,
+        &amp;quot;doctor_heal_radius&amp;quot;: 4
+    },
+    &amp;quot;triggers&amp;quot;: [{
+        &amp;quot;type&amp;quot;: &amp;quot;custom&amp;quot;,
+        &amp;quot;kind&amp;quot;: &amp;quot;doctor_heal&amp;quot;
+    }],
+    &amp;quot;targets&amp;quot;: [{
+        &amp;quot;type&amp;quot;: &amp;quot;dynamic_sensor&amp;quot;,
+        &amp;quot;radius&amp;quot;: &amp;quot;doctor_heal_radius&amp;quot;,
+        &amp;quot;side&amp;quot;: &amp;quot;team&amp;quot;
+    },{
+        &amp;quot;type&amp;quot;: &amp;quot;self&amp;quot;
+    },{
+        &amp;quot;type&amp;quot;: &amp;quot;wounded&amp;quot;
+    }],
+        &amp;quot;spells&amp;quot;: [{
+            &amp;quot;type&amp;quot;: &amp;quot;heal&amp;quot;,
+            &amp;quot;key&amp;quot;: &amp;quot;doctor_heal&amp;quot;,
+            &amp;quot;visual_key&amp;quot;: &amp;quot;heal_aura&amp;quot;,
+            &amp;quot;amount&amp;quot;: &amp;quot;doctor_heal_amount&amp;quot;
+    }]
+}]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}
+```&lt;/p&gt;
+
+&lt;p&gt;这是系统中一个简单医疗技能的示例，每两秒钟会对周边4个单位距离内受伤的友军回复最多60点的健康值。&lt;/p&gt;
+
+&lt;p&gt;以下几点值得注意：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;通过 define 的方式，把数值定义为属性，于是可以做进一步的加成或是修改，同一个文件不需修改可以应用在多处&lt;/li&gt;
+&lt;li&gt;重复触发是一个模块，可以用在所有需要定时逻辑的地方&lt;/li&gt;
+&lt;li&gt;医治逻辑也是一个模块，可以由其他方式触发&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;总结:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;总结&lt;/h2&gt;
+
+&lt;p&gt;这个题目比较大，要解释清楚不太容易，很多地方个人的理解也未必就是对的，很可能还有更好的方式。&lt;/p&gt;
+
+&lt;p&gt;具体的在项目开发中设计与应用架构是个极为灵活的过程，没有一定之规，必须根据项目、团队的具体情况才能做出比较合理的选择，我想这也是为什么我们不仅仅把软件开发作为一门技术，而也会作为一门艺术来看待吧。另一种看法是软件开发更接近一门手艺，这也是我个人最有同感的。&lt;/p&gt;
+
+&lt;h2 id=&#34;附录:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;附录&lt;/h2&gt;
+
+&lt;h3 id=&#34;术语:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;术语&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;数据  Data&lt;/li&gt;
+&lt;li&gt;元数据 Metadata&lt;/li&gt;
+&lt;li&gt;数据库模式 Database Schema&lt;/li&gt;
+&lt;li&gt;架构 Architect&lt;/li&gt;
+&lt;li&gt;领域专属语言 DSL - Domain Specific Language&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;对于程序员来说，英文是很重要的，可以说是事实上的通用语言，恐怕在可见的未来也不会发生转变，又不想在中文技术文章中夹入大量的英文单词，暂定的方式是对于无法翻译或无需翻译的直接用英文，例如：Unity3D；可以翻译的尽量用中文，有其他翻译或是可能有歧义的在附录中列出；主要的术语则也在附录中列出对照的英文，以方便有兴趣的读者做进一步的研究。&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>独立游戏程序员生存指南</title>
+      <link>http://cn.yjpark.org/blog/2015/02/23/indie-game-developer-survival-guide/</link>
+      <pubDate>Mon, 23 Feb 2015 00:00:00 +0000</pubDate>
+      <author>yjpark@gmail.com (YJ Park)</author>
+      <guid>http://cn.yjpark.org/blog/2015/02/23/indie-game-developer-survival-guide/</guid>
+      <description>
+
+&lt;h2 id=&#34;缘起:4ec3be413e2671f3581da2b4d6e4e8cc&#34;&gt;缘起&lt;/h2&gt;
+
+&lt;p&gt;今年1月的时候，公司协办了一次 Global Game Jam 北京站的活动，说是希望能做个简单的有关游戏开发的介绍，开始没太在意，想着应该是个不太正式的交流，也没怎么准备。结果到了一周前的时候才听说活动规模并不小，至少有100多人会参加，而且我的环节也是更像是演讲类型的。于是多少有些紧张，好久没当众说过话了，开始认真的选题，准备幻灯片。&lt;/p&gt;
+
+&lt;p&gt;自己做游戏也有一段时间了，技术上的（主要是 Unity 3D 相关的），非技术上的，收获和感触也还是挺多的，所以想了想还是选了一个比较宽泛的题目。用了一两天的时间准备了幻灯片，主要是一些觉的有意思或者也许对听众有点用的提纲，具体的内容想了些大概的轮廓，并没有特别清晰的排练过，想着准备的多一点，到时候说到哪里算哪里，不用注意控制时间，简单的多，说的时候压力也会小些。&lt;/p&gt;
+
+&lt;p&gt;活动当天来的人比想象的还多，多少还是有些紧张和兴奋，出乎意料的是除了介绍性的简单内容，准备的要点只说了两张幻灯左右，分配的30分钟时间就没了，准备的最完整的部分基本都没用上。虽然感觉效果还不错（其实从这种活动上，基本上没法真正的学到什么东西，如果能有一些支离的信息能给听众留下印象，或是感到受到了启发的话，对讲者来说就是很难得的了），不过有些意犹未尽的感觉。&lt;/p&gt;
+
+&lt;p&gt;之前也断断续续写过些博客，因为中文水平和打字速度的问题，内容也是技术为主，大部分都是用英文写的，就想着借这个机会，开了个中文的博客，希望能提高提高中文能力。&lt;/p&gt;
+
+&lt;p&gt;英文博客是用 Octopress 2.0 做的，放在 Github 上，评论也是大家都用的 Disqus，国内访问多少都有些问题，中文站就放在  GitCafé 了，评论选了多说。本想升级到 Octopress 3.0，不过因为还没发布，模板什么的都还没完成，简单试了试，大小问题都还有不少，就作罢了。&lt;/p&gt;
+
+&lt;p&gt;下面就先把上次准备的幻灯片放上，具体的内容会在以后的文章里慢慢的加入。&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;gallery&#34; itemscope itemtype=&#34;http://schema.org/ImageGallery&#34;&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-01.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-01.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 1&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 1
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-02.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-02.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 2&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 2
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-03.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-03.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 3&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 3
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-04.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-04.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 4&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 4
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-05.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-05.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 5&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 5
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-06.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-06.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 6&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 6
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-07.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-07.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 7&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 7
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-08.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-08.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 8&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 8
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-09.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-09.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 9&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 9
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-10.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-10.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 10&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 10
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-11.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-11.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 11&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 11
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-12.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-12.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 12&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 12
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-13.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-13.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 13&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 13
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-14.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-14.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 14&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 14
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-15.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-15.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 15&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 15
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-16.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-16.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 16&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 16
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-17.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-17.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 17&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 17
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-18.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-18.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 18&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 18
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-19.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-19.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 19&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 19
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-20.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-20.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 20&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 20
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-21.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-21.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 21&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 21
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-22.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-22.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 22&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 22
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-23.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-23.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 23&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 23
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-24.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-24.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 24&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 24
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//full/slides-25.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1333x750&#34;&gt;
+      &lt;img src=&#34;http://cn.yjpark.org/slides/2015-02-23-indie-game-developer-survival-guide//thumbnail/slides-25.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Page 25&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Page 25
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;YJ Park&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+&lt;div class=&#34;title&#34;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;link rel=&#34;stylesheet&#34; href=&#34;http://cn.yjpark.org/css/photoswipe.css&#34;&gt;
+&lt;link rel=&#34;stylesheet&#34; href=&#34;http://cn.yjpark.org/css/default-skin/default-skin.css&#34;&gt;
+&lt;script src=&#34;http://cn.yjpark.org/js/photoswipe.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;http://cn.yjpark.org/js/photoswipe-ui-default.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;http://cn.yjpark.org/js/initphotoswipe.js&#34;&gt;&lt;/script&gt;
+
+
+
+&lt;div class=&#34;pswp&#34; tabindex=&#34;-1&#34; role=&#34;dialog&#34; aria-hidden=&#34;true&#34;&gt;
+
+&lt;div class=&#34;pswp__bg&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;pswp__scroll-wrap&#34;&gt;
+    
+    &lt;div class=&#34;pswp__container&#34;&gt;
+      &lt;div class=&#34;pswp__item&#34;&gt;&lt;/div&gt;
+      &lt;div class=&#34;pswp__item&#34;&gt;&lt;/div&gt;
+      &lt;div class=&#34;pswp__item&#34;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class=&#34;pswp__ui pswp__ui--hidden&#34;&gt;
+    &lt;div class=&#34;pswp__top-bar&#34;&gt;
+      
+      &lt;div class=&#34;pswp__counter&#34;&gt;&lt;/div&gt;
+      &lt;button class=&#34;pswp__button pswp__button--close&#34; title=&#34;Close (Esc)&#34;&gt;&lt;/button&gt;
+      &lt;button class=&#34;pswp__button pswp__button--share&#34; title=&#34;Share&#34;&gt;&lt;/button&gt;
+      &lt;button class=&#34;pswp__button pswp__button--fs&#34; title=&#34;Toggle fullscreen&#34;&gt;&lt;/button&gt;
+      &lt;button class=&#34;pswp__button pswp__button--zoom&#34; title=&#34;Zoom in/out&#34;&gt;&lt;/button&gt;
+      
+      
+      &lt;div class=&#34;pswp__preloader&#34;&gt;
+        &lt;div class=&#34;pswp__preloader__icn&#34;&gt;
+          &lt;div class=&#34;pswp__preloader__cut&#34;&gt;
+            &lt;div class=&#34;pswp__preloader__donut&#34;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;pswp__share-modal pswp__share-modal--hidden pswp__single-tap&#34;&gt;
+      &lt;div class=&#34;pswp__share-tooltip&#34;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button class=&#34;pswp__button pswp__button--arrow--left&#34; title=&#34;Previous (arrow left)&#34;&gt;
+    &lt;/button&gt;
+    &lt;button class=&#34;pswp__button pswp__button--arrow--right&#34; title=&#34;Next (arrow right)&#34;&gt;
+    &lt;/button&gt;
+    &lt;div class=&#34;pswp__caption&#34;&gt;
+      &lt;div class=&#34;pswp__caption__center&#34;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;style&gt;
+    .gallery { float: right; }
+    .gallery img { width: 100%; height: auto; }
+    .gallery figure { display: block; float: left; margin: 0 5px 5px 0; width: 80px; }
+    .gallery figcaption { display: none; }
+    span[itemprop=&#34;copyrightHolder&#34;] { color : #888; float: right; }
+    span[itemprop=&#34;copyrightHolder&#34;]:before { content: &#34;Foto: &#34;; }
+&lt;/style&gt;
+
+
+&lt;script&gt;initPhotoSwipeFromDOM(&#39;.gallery&#39;);&lt;/script&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

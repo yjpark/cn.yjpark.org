@@ -1,25 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
-    <url>
-        <loc>http://cn.yjpark.org/blog/2015/02/23/indie-game-developer-survival-guide/</loc>
-        <lastmod>2015-02-24T16:40:15+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://cn.yjpark.org/blog/2015/02/26/data-and-metadata-in-game-development-architect/
-        </loc>
-        <lastmod>2015-02-28T00:20:38+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://cn.yjpark.org/blog/archives/</loc>
-        <lastmod>2015-02-28T00:20:38+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://cn.yjpark.org/</loc>
-        <lastmod>2015-02-28T00:20:38+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://cn.yjpark.org/robots.txt</loc>
-        <lastmod>2015-02-23T01:46:01+08:00</lastmod>
-    </url>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://cn.yjpark.org/</loc>
+    <lastmod>2015-02-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://cn.yjpark.org/blog/2015/02/26/data-and-metadata-in-game-development-architect/</loc>
+    <lastmod>2015-02-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cn.yjpark.org/blog/2015/02/23/indie-game-developer-survival-guide/</loc>
+    <lastmod>2015-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cn.yjpark.org/page/about/</loc>
+  </url>
+  
 </urlset>
