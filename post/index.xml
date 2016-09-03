@@ -124,43 +124,42 @@
 
 &lt;h2 id=&#34;示例:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;示例&lt;/h2&gt;
 
-&lt;p&gt;``` json 基本医疗技能
-{
-    &amp;ldquo;abilities&amp;rdquo;: [{
-        &amp;ldquo;skills&amp;rdquo;: [{
-            &amp;ldquo;type&amp;rdquo;: &amp;ldquo;repeat_trigger&amp;rdquo;,
-            &amp;ldquo;interval&amp;rdquo;: 2.0,
-            &amp;ldquo;kind&amp;rdquo;: &amp;ldquo;doctor_heal&amp;rdquo;&lt;/p&gt;
+&lt;h3 id=&#34;基本医疗技能:72627c34ae4eeb2ede4f52e4c9b7c3a7&#34;&gt;基本医疗技能&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;    }],
-    &amp;quot;define&amp;quot;: {
-        &amp;quot;doctor_heal_amount&amp;quot;: 60,
-        &amp;quot;doctor_heal_radius&amp;quot;: 4
-    },
-    &amp;quot;triggers&amp;quot;: [{
-        &amp;quot;type&amp;quot;: &amp;quot;custom&amp;quot;,
-        &amp;quot;kind&amp;quot;: &amp;quot;doctor_heal&amp;quot;
-    }],
-    &amp;quot;targets&amp;quot;: [{
-        &amp;quot;type&amp;quot;: &amp;quot;dynamic_sensor&amp;quot;,
-        &amp;quot;radius&amp;quot;: &amp;quot;doctor_heal_radius&amp;quot;,
-        &amp;quot;side&amp;quot;: &amp;quot;team&amp;quot;
-    },{
-        &amp;quot;type&amp;quot;: &amp;quot;self&amp;quot;
-    },{
-        &amp;quot;type&amp;quot;: &amp;quot;wounded&amp;quot;
-    }],
-        &amp;quot;spells&amp;quot;: [{
-            &amp;quot;type&amp;quot;: &amp;quot;heal&amp;quot;,
-            &amp;quot;key&amp;quot;: &amp;quot;doctor_heal&amp;quot;,
-            &amp;quot;visual_key&amp;quot;: &amp;quot;heal_aura&amp;quot;,
-            &amp;quot;amount&amp;quot;: &amp;quot;doctor_heal_amount&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;abilities&amp;quot;: [{
+        &amp;quot;skills&amp;quot;: [{
+            &amp;quot;type&amp;quot;: &amp;quot;repeat_trigger&amp;quot;,
+            &amp;quot;interval&amp;quot;: 2.0,
+            &amp;quot;kind&amp;quot;: &amp;quot;doctor_heal&amp;quot;
+
+        }],
+        &amp;quot;define&amp;quot;: {
+            &amp;quot;doctor_heal_amount&amp;quot;: 60,
+            &amp;quot;doctor_heal_radius&amp;quot;: 4
+        },
+        &amp;quot;triggers&amp;quot;: [{
+            &amp;quot;type&amp;quot;: &amp;quot;custom&amp;quot;,
+            &amp;quot;kind&amp;quot;: &amp;quot;doctor_heal&amp;quot;
+        }],
+        &amp;quot;targets&amp;quot;: [{
+            &amp;quot;type&amp;quot;: &amp;quot;dynamic_sensor&amp;quot;,
+            &amp;quot;radius&amp;quot;: &amp;quot;doctor_heal_radius&amp;quot;,
+            &amp;quot;side&amp;quot;: &amp;quot;team&amp;quot;
+        },{
+            &amp;quot;type&amp;quot;: &amp;quot;self&amp;quot;
+        },{
+            &amp;quot;type&amp;quot;: &amp;quot;wounded&amp;quot;
+        }],
+            &amp;quot;spells&amp;quot;: [{
+                &amp;quot;type&amp;quot;: &amp;quot;heal&amp;quot;,
+                &amp;quot;key&amp;quot;: &amp;quot;doctor_heal&amp;quot;,
+                &amp;quot;visual_key&amp;quot;: &amp;quot;heal_aura&amp;quot;,
+                &amp;quot;amount&amp;quot;: &amp;quot;doctor_heal_amount&amp;quot;
+        }]
     }]
-}]
+}
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;}
-```&lt;/p&gt;
 
 &lt;p&gt;这是系统中一个简单医疗技能的示例，每两秒钟会对周边4个单位距离内受伤的友军回复最多60点的健康值。&lt;/p&gt;
 
