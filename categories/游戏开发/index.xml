@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>游戏开发 技术心得 on YJ Park 之程序人生</title>
-    <link>http://cn.yjpark.org/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91-%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/</link>
-    <description>Recent content in 游戏开发 技术心得 on YJ Park 之程序人生</description>
+    <title>游戏开发 on YJ Park 之程序人生</title>
+    <link>http://cn.yjpark.org/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/</link>
+    <description>Recent content in 游戏开发 on YJ Park 之程序人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <managingEditor>yjpark@gmail.com (YJ Park)</managingEditor>
     <webMaster>yjpark@gmail.com (YJ Park)</webMaster>
     <copyright>This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</copyright>
     <lastBuildDate>Thu, 26 Feb 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://cn.yjpark.org/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91-%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://cn.yjpark.org/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>游戏开发架构中的数据与元数据</title>
