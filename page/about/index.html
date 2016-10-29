@@ -9,10 +9,10 @@
   <title></title>
 
   <meta name="author" content="YJ Park" />
-  
+
   
 
-  <meta name="generator" content="Hugo 0.15" />
+  <meta name="generator" content="Hugo 0.16" />
 
   <link rel="alternate" href="http://cn.yjpark.org/index.xml" type="application/rss+xml" title="YJ Park 之程序人生">
 
@@ -22,13 +22,15 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="http://cn.yjpark.org/css/rouge.css" />
-  
+
+  <link rel="stylesheet" href="http://cn.yjpark.org/css/paper-canvas.css" />
+
   
   <meta property="og:title" content="" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="/" />
   <meta property="og:image" content="img/yjpark_icon.png" />
-  
+
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
@@ -81,6 +83,7 @@
   </div>
 </nav>
 
+    <canvas id="paper-background" resize></canvas>
 
     <div role="main" class="container main-content">
 
@@ -91,35 +94,10 @@
   <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1">
     
 
-<h1 id="todo:6083a88ee3411b0d17ce02d738f69d47">TODO</h1>
+<h1 id="todo">TODO</h1>
 
-	
   </div>
 </div>
-
-      
-
-      
-
-      
-          
-<div class="ds-thread" data-thread-key="" data-title="" data-url="http://cn.yjpark.org/page/about/"></div>
-
-
-
-<script type="text/javascript">
-    var duoshuoQuery = {short_name:"yjpark"};
-
-    (function() {
-     var ds = document.createElement('script');
-     ds.type = 'text/javascript';ds.async = true;
-     ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-     ds.charset = 'UTF-8';
-     (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-     })();
-    </script>
-
 
       
 
@@ -171,14 +149,14 @@
         				<i class="fa fa-rss fa-stack-1x fa-inverse"></i>
       			  </span>
       			</a>
-    		  </li>		
+    		  </li>
 
         </ul>
         <p class="copyright text-muted">
     		  YJ Park
     		  &nbsp;&bull;&nbsp;
     		  2015
-    		  
+
     		  
     		  &nbsp;&bull;&nbsp;
     		  <a href="http://cn.yjpark.org/">YJ Park 之程序人生</a>
@@ -197,6 +175,10 @@
 <script src="http://cn.yjpark.org/js/jquery-1.11.2.min.js"></script>
 <script src="http://cn.yjpark.org/js/bootstrap.min.js"></script>
 <script src="http://cn.yjpark.org/js/main.js"></script>
+
+<script src="http://cn.yjpark.org/js/paper-full.min.js"></script>
+<script type="text/paperscript" src="js/paper-sea.js" canvas="paper-background">
+</script>
 
 
 

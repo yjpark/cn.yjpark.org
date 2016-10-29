@@ -9,10 +9,10 @@
   <title>YJ Park 之程序人生</title>
 
   <meta name="author" content="YJ Park" />
-  
+
   
 
-  <meta name="generator" content="Hugo 0.15" />
+  <meta name="generator" content="Hugo 0.16" />
 
   <link rel="alternate" href="http://cn.yjpark.org/index.xml" type="application/rss+xml" title="YJ Park 之程序人生">
 
@@ -22,13 +22,15 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="http://cn.yjpark.org/css/rouge.css" />
-  
+
+  <link rel="stylesheet" href="http://cn.yjpark.org/css/paper-canvas.css" />
+
   
   <meta property="og:title" content="YJ Park 之程序人生" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="//" />
   <meta property="og:image" content="img/yjpark_icon.png" />
-  
+
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
@@ -81,6 +83,7 @@
   </div>
 </nav>
 
+    <canvas id="paper-background" resize></canvas>
 
     <div role="main" class="container main-content">
 
@@ -90,45 +93,45 @@
         <article class="post-preview">
           <a href="http://cn.yjpark.org/blog/2015/02/26/data-and-metadata-in-game-development-architect/">
       	  <h2 class="post-title">游戏开发架构中的数据与元数据</h2>
-      	
-      	    
+
+      	  
           </a>
 
           <p class="post-meta">
             Posted on February 26, 2015
           </p>
-        
+
           <div class="post-entry">
             <p>从 2012年4月开始，一直都在开发一款平板电脑上的实时战略类游戏，开发平台是当下比较流行的 Unity3D，网络传输部分基于 uLink。是我自己的第一个 Unity3D 项目，在架构上下了不少功夫，项目相对比较复杂，作为架构师和主要的开发者（技术团队一共3个人，其他两个经验都比较少），工作量着实不小，开发过程还是相当痛苦的，相对应的收获也很不少。</p>
 
 <p>目前项目的技术部分基本上算是告一段落，下一步更多的是市场和运营的工作，我的重心也会向服务器管理的部分转移，计划陆续把项目中的心得体会在这里用文字的形式保留一下。</p>
 
-<h2 id="数据:72627c34ae4eeb2ede4f52e4c9b7c3a7">数据</h2>
+<h2 id="数据">数据</h2>
 
 <p>其实广义的说，与计算机相关的所有的信息，包括代码，可执行文件，网络数据包，一切的一切都是数据，取决于从什么方向来看，比如说，源代码是编译器的输入数据，相应的可执行文件则是编译器的输出数据；从操作系统的角度来看，可执行文件就变成了输入数据。</p>
 
-<h2 id="元数据:72627c34ae4eeb2ede4f52e4c9b7c3a7">元数据</h2>
+<h2 id="元数据">元数据</h2>
 
 <p>元数据简单的说就是关于数据的数据，听上去可能比较抽象，其实并没有什么特别之处，例如关系式数据库中数据库的模式就是一种典型的元数据，定义了数据表的内容格式，包含哪些列，各自的数据类型及取值的约束，索引的定义等等，表中存储的内容是数据，模式就是数据的数据，也就是元数据。</p>
 
       	  <a href="http://cn.yjpark.org/blog/2015/02/26/data-and-metadata-in-game-development-architect/" class="post-read-more">[Read&nbsp;More]</a>
           </div>
-        
+
          </article>
         
         <article class="post-preview">
           <a href="http://cn.yjpark.org/blog/2015/02/23/indie-game-developer-survival-guide/">
       	  <h2 class="post-title">独立游戏程序员生存指南</h2>
-      	
-      	    
+
+      	  
           </a>
 
           <p class="post-meta">
             Posted on February 23, 2015
           </p>
-        
+
           <div class="post-entry">
-            <h2 id="缘起:4ec3be413e2671f3581da2b4d6e4e8cc">缘起</h2>
+            <h2 id="缘起">缘起</h2>
 
 <p>今年1月的时候，公司协办了一次 Global Game Jam 北京站的活动，说是希望能做个简单的有关游戏开发的介绍，开始没太在意，想着应该是个不太正式的交流，也没怎么准备。结果到了一周前的时候才听说活动规模并不小，至少有100多人会参加，而且我的环节也是更像是演讲类型的。于是多少有些紧张，好久没当众说过话了，开始认真的选题，准备幻灯片。</p>
 
@@ -138,7 +141,7 @@
 
       	  <a href="http://cn.yjpark.org/blog/2015/02/23/indie-game-developer-survival-guide/" class="post-read-more">[Read&nbsp;More]</a>
           </div>
-        
+
          </article>
         
       </div>
@@ -193,14 +196,14 @@
         				<i class="fa fa-rss fa-stack-1x fa-inverse"></i>
       			  </span>
       			</a>
-    		  </li>		
+    		  </li>
 
         </ul>
         <p class="copyright text-muted">
     		  YJ Park
     		  &nbsp;&bull;&nbsp;
     		  2015
-    		  
+
     		  
     		  &nbsp;&bull;&nbsp;
     		  <a href="http://cn.yjpark.org/">YJ Park 之程序人生</a>
@@ -219,6 +222,10 @@
 <script src="http://cn.yjpark.org/js/jquery-1.11.2.min.js"></script>
 <script src="http://cn.yjpark.org/js/bootstrap.min.js"></script>
 <script src="http://cn.yjpark.org/js/main.js"></script>
+
+<script src="http://cn.yjpark.org/js/paper-full.min.js"></script>
+<script type="text/paperscript" src="js/paper-sea.js" canvas="paper-background">
+</script>
 
 
 
