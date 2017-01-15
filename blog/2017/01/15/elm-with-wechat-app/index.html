@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Elm 语言开发微信小程序</title>
+
+  <meta name="author" content="YJ Park" />
+
+  
+
+  <meta name="generator" content="Hugo 0.16" />
+
+  <link rel="alternate" href="http://cn.yjpark.org/index.xml" type="application/rss+xml" title="YJ Park 之程序人生">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://cn.yjpark.org/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://cn.yjpark.org/css/main.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://cn.yjpark.org/css/rouge.css" />
+
+  <link rel="stylesheet" href="http://cn.yjpark.org/css/paper-canvas.css" />
+
+  
+  <meta property="og:title" content="Elm 语言开发微信小程序" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/" />
+  <meta property="og:image" content="img/yjpark_icon.png" />
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://cn.yjpark.org/">YJ Park 之程序人生</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+          <a title="博客" href="/">博客</a>
+  	      </li>
+  	    
+      
+        
+          <li>
+          <a title="关于" href="/page/about/">关于</a>
+  	      </li>
+  	    
+      
+      </ul>
+    </div>
+
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+      
+          <a title="YJ Park 之程序人生" href="http://cn.yjpark.org/">
+              <img class="avatar-img" src="http://cn.yjpark.org/img/yjpark_icon.png" alt="YJ Park 之程序人生" />
+          </a>
+      
+	  </div>
+	</div>
+
+  </div>
+</nav>
+
+    <canvas id="paper-background" resize></canvas>
+
+    <div role="main" class="container main-content">
+
+      
+        <header class="header-post">
+  <div class="row">
+    <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1">
+      <div class="post-heading">
+        <h1>Elm 语言开发微信小程序</h1>
+        
+        <span class="post-meta">Posted on January 15, 2017</span>
+      </div>
+     </div>
+  </div>
+</header>
+
+<article>
+  <div class="row">
+    <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1">
+	  
+
+<p>由于工作需要，最近进行了一些目前很热门的微信小程序开发，技术选型的过程和结果都有些值得分享的体会，尝试做个简要的介绍。</p>
+
+<p>先说结果，核心的逻辑采用了 Elm 语言开发，编译到 JavaScript ，界面显示还是标准的 JavaScript 和 WXML。</p>
+
+<h2 id="elm-是什么">Elm 是什么?</h2>
+
+<p>官网的简介:</p>
+
+<pre><code>A delightful language for reliable webapps. Generate JavaScript with great performance and no runtime exceptions.
+</code></pre>
+
+<p>翻译成中文大约是：</p>
+
+<pre><code>一门开发网页应用的令人愉悦的语言，生成高性能、没有运行时例外的 JavaScript 代码
+</code></pre>
+
+<p>过去两周，写了大约 5000 行的 Elm 代码，感觉上面的描述还是挺靠谱的，和手写 JavaScript 相比，确实令人愉悦。下面简单分析下技术上 Elm 是如何做到的。</p>
+
+<p>（这篇文章以概念和经验介绍为主，就基本不上代码了，以后尽量有后续的详细介绍）</p>
+
+<h3 id="强类型-静态类型的编译语言">强类型，静态类型的编译语言</h3>
+
+<p>个人认为这是 Elm 和 JavaScript 最大的区别，JavaScript 不会对代码访问的数据做任何的类型检查，只有实际运行后才知道结果会怎样，可能会出现空指针，未定义变量，数据类型、格式不匹配等等各种问题，而且测试运行通过也不代表今后的运行还是正确的，因为将来的输入数据可能会有变化。</p>
+
+<p>常见的解决方法有数据检查、代码检查工具（例如 Facebook FlowType）、代码扩展（例如微软的 TypeScript）等等。基本上都是补丁的方式，而且并非强制的，不能彻底解决问题。</p>
+
+<p>作为编译语言， Elm 需要定义数据、函数的类型（也支持自动类型推定），会在编译时进行检查，只有所有的函数调用完全符合所声明的类型时才能编译通过。而且 Elm 中没有空指针的概念，对于可能为空的情况必须明确声明，并做相应的处理。</p>
+
+<h3 id="函数式语言-不可变数据">函数式语言，不可变数据</h3>
+
+<p>函数式其实是个历史悠久的概念，不过由于各种历史原因，目前的主流语言大多以面向对象为核心，导致很多人（包括我自己）都对函数式语言不了解，并且常常会有很难学，很难用的印象。数年之前用 XMonad 作为主力窗口管理器（现在偶尔也还会用），配置文件需要用 Haskell 写，在没学语法的情况下参考其他人的例子配了个相当满意的配置，一直想认真学一下，不过一直也没抽出时间来。</p>
+
+<p>其实如果把对象看成数据结构和操作数据结构的方法的结合，在直观的层面上和函数式的方式并没有本质的区别，像是 C# 里面的 Extension 就是应用了语法糖的方式，伪装成成员方法的外在函数。</p>
+
+<p>而不可变数据才是让函数式编程截然不同的原因，如果还是以对象的眼光来看待的话，可以理解成每次对于对象的修改都产生了一个独立的新对象，它们之间完全隔离，彼此没有任何影响。随之而来的各种好处是巨大的，例如对于并发的处理，缓存的处理等等。</p>
+
+<p>另一个重要的特性就是高阶函数、闭包，虽然现在的主流语言基本上也都提供了支持，也很大程度上改善了语言的描述性，但在离开了不可变的情况下，并不能提供同样的强大支持。</p>
+
+<h3 id="elm-架构">Elm 架构</h3>
+
+<p>Elm 架构是构架在语言层面之上的系统组织形式，也有点像是 Elm 中的入口（main 函数），独到之处在于它是完整的运行周期管理，并且在 Elm 中，似乎没有其它的方式，只能以这一模式运行，貌似很死板，实际用起来还很适用。</p>
+
+<p>如果你对于 Flux，Redux，有过了解的话，基本上也已经了解 Elm 架构了，它们的设计都受到了 Elm 的很大影响，基于同样的理念。</p>
+
+<p>为了避免这篇文章太长而无法完成，就不详细介绍了，具体的细节可以参考官方的入门文档。</p>
+
+<h2 id="成果与心得">成果与心得</h2>
+
+<p>虽然 Evan Czaplicki （Elm 作者）非常强调 Elm 对初学者的友好，也花了不少精力提供了不错的文档和工具，但是真正把一门新语言应用到实际项目中始终都是个挑战，另外微信小程序与标准的 Web 开发也有不少区别，需要额外的时间和精力。</p>
+
+<p>语法和类库的层面就不提了，语法写习惯了就好，核心的类库还是挺小的，文档也很清晰，就是往往没有明确的示例，需要一些试验才能真正理解，在开发周期比较紧的时候，压力还是很大的。</p>
+
+<p>不过在这次的经验上，Elm 从入门到达到相对高效的状态比想象的要快，感觉设计思路上非常清晰，对于设计场景很适合。我自身的方面是各方面开发经验和接触过的语言还算多，函数式语言之前有过不到两个月的 Erlang 经验，多年的习惯是 Vim 开发，打日志调试为主，对 IDE 没太大需求。</p>
+
+<h3 id="柯里化-currying-以及管道操作符">柯里化（Currying）以及管道操作符</h3>
+
+<pre><code>insertInt : String -&gt; Int -&gt; DataDict -&gt; DataDict
+insertInt key val =
+    Dict.insert key (Json.Encode.int val)
+</code></pre>
+
+<p>这是一个极其简单的函数的声明，第一行是类型的定义，一堆箭头，让人有点晕，如果描述一下的话，版本 A 是这样的：</p>
+
+<ul>
+<li>insertInt 是一个函数，有一个输入，类型是 String，输出类型是函数 insertInt_A1</li>
+<li>insertInt_A1 也是一个函数，有一个输入，类型是 Int，输出类型是函数 insertInt_A2</li>
+<li>insertInt_A2 还是一个函数，有一个输入，类型是 DataDict，输出类型也是 DataDict</li>
+</ul>
+
+<pre><code>type alias Data = Json.Encode.Value
+type alias DataDict = (Dict.Dict String Data)
+</code></pre>
+
+<p>DataDict 就是一个字典，键的类型是 String，值的类型是一个 Json 数据</p>
+
+<p>对于一个所有实现仅有一行的函数来说，还真是显得有点过于复杂了，其实这还不算完，还有版本 B：</p>
+
+<ul>
+<li>insertInt 是一个函数，有两个输入，类型是 String 和 Int，输出类型是函数 insertInt_B</li>
+<li>insertInt_B 也是一个函数，有一个输入，类型是 DataDict，输出类型也是 DataDict</li>
+</ul>
+
+<p>或者是比较容易理解的版本 C：</p>
+
+<ul>
+<li>insertInt 是一个函数，有三个输入，类型是 String，Int，DataDict，输出类型是DataDict</li>
+</ul>
+
+<p>那么哪个是正确的版本呢，全都是，取决于使用的方式。定义的时候其实也是一样，从代码上看比较像是版本 B，有两个输入参数，而你完全可以用版本 A 或是版本 C 的方式来使用。</p>
+
+<p>一旦开始用这样的眼光来看待多参数的函数，你会有一种发现了新世界的感觉，函数之间的重用非常方便，而实现起来又极为简单。概念上这是属于所谓<code>柯里化（Currying）</code>的范畴，使用上需要一些经验的积累，才能达到得心应手的状态。</p>
+
+<pre><code>encode : Type -&gt; Data
+encode info =
+    empty
+        |&gt; insertString &quot;nickName&quot; info.nickName
+        |&gt; insertInt &quot;gender&quot; (Gender.encode info.gender)
+        |&gt; insertString &quot;city&quot; info.city
+        |&gt; insertString &quot;province&quot; info.province
+        |&gt; insertString &quot;country&quot; info.country
+        |&gt; insertString &quot;avatarUrl&quot; info.avatarUrl
+        |&gt; dictToData
+</code></pre>
+
+<p>这段代码是用了上面定义的函数来生成一个 Json 数据的过程，其中的 <code>|&gt;</code> 表示的是把之前的数据作为后面函数调用的后一个参数，在合适的情境下，会让代码很清晰。</p>
+
+<p>友情提示：用过 Elixir 的码农注意了，Elixir 的管道符是变成第一个参数的，别弄混了。</p>
+
+<p>另外，Elm 中还有其它几个特殊符号：<code>&lt;|</code>，<code>&gt;&gt;</code>，都很有用，这里就不细说了，当然有时难免还是得加括号的。</p>
+
+<h3 id="单一行为的串联">单一行为的串联</h3>
+
+<pre><code>update : Msg -&gt; Model -&gt; (Model, Cmd Msg)
+</code></pre>
+
+<p>在对于一个事件做处理时，往往需要做多种操作，更新数据，发送新消息，执行外部访问，等等，代码渐渐的就难以清晰的看出其中的意图来了，开始时也困惑了一阵子，后来找到了 elm-update-extra 这个包，一下子就清楚了，其实核心的思想就是引入中间的环节，多个环节就可以连接起来了</p>
+
+<pre><code>op : (Model, Cmd Msg) -&gt; (Model, Cmd Msg)
+</code></pre>
+
+<p>例如</p>
+
+<pre><code>...
+    (updateModel &lt;| SocketModel.setOnline True)
+    &gt;&gt; (updateModel &lt;| SocketModel.updateChannel Channel.onJoin)
+    &gt;&gt; (addCmd &lt;| toCmd DoJoinChannel topic res)
+...
+</code></pre>
+
+<p>就更新了数据模型中的两个部分，并且发送了一个新的消息，有了这几个简单的函数（updateModel, addCmd, toCmd）的帮助，代码又变得很好读了，强烈推荐。</p>
+
+<ul>
+<li><a href="https://github.com/ccapndave/elm-update-extra">https://github.com/ccapndave/elm-update-extra</a></li>
+</ul>
+
+<p>友情提示：如果实现上既带进来了旧的 model，又利用了其它的环节，一定注意不要把 model 弄混，如果错误的把旧的值传下去，会导致数据的丢失。</p>
+
+<h3 id="子模块的拆分和交互">子模块的拆分和交互</h3>
+
+<p>文档中的示例是标准的 Todo 应用，逻辑很简单，并不能完全解决实际应用的需求，个人体会最大的需求是更好的模块化，把不同部分的逻辑互相隔离，经过一些调研，选择了 elm-component-updater 来支持模块化的组织，以及模块之间的交互，效果很满意，强烈推荐。</p>
+
+<ul>
+<li><a href="https://github.com/mpdairy/elm-component-updater">https://github.com/mpdairy/elm-component-updater</a></li>
+</ul>
+
+<p>友情提示：一定化些时间把里面的示例完全看懂，明白了以后概念是很清晰的，实际使用中也很灵活。</p>
+
+<p>这个话题有点大，要说清楚得不小的篇幅，只能留到以后了。</p>
+
+<h3 id="对微信小程序-api-的封装">对微信小程序 API 的封装</h3>
+
+<p>微信提供的是 JavaScript 的接口，虽然文档还不错，但并不能很好的与 Elm 相结合，在熟悉了 Elm 之后，就尝试着做了一个封装，效果很好，可以进行类型检查，也完全是以 Elm 的方式在访问相关的接口。</p>
+
+<p>这部分目前只实现了用到的几个接口，添加更多的接口实现上都比较简单直接，在成熟的时候会开源出来。</p>
+
+<h3 id="和界面部分的结合">和界面部分的结合</h3>
+
+<p>由于微信小程序并不提供 Dom 的访问，Elm 中很强大的 Virtual Dom 并不能被用到，目前是在数据模型发生变化时发送更新给 JavaScript 端，再调用 setData()，完成页面渲染。</p>
+
+<p>理想情况当然是能够实现兼容 Virtual Dom 的方式，不过技术上有一定的难度，目前还没有很好的方案。另一方面目前的模式也还是很清晰的，JavaScript 只负责简单的数据传递，修改请求也是用生成事件的方式回传给 Elm 的，所以虽然不是最优，立刻修改的需求也并不强烈。</p>
+
+<h3 id="elm-css-的应用">elm-css 的应用</h3>
+
+<p>虽然也做过些网页相关的工作，不过基本上不具备 CSS 的技能，现在是个小团队，也得自己写写，学了语法，写起来还是有 JavaScript 的感觉，没有编译期的检查，往往只能频繁的尝试，偶尔也会因为格式的问题（写错键值、单位等等）产生问题，当时如果没发现，就成了隐患。</p>
+
+<p>还好有其他人也有同样的感觉，发现了 elm-css 这个用 Elm 写 CSS 的工具，感觉其它的那些 CSS 工具都太弱了，所有的定义都有相应的类型，以及可接受的输入，编译期的检查保证了只能生成有效的 CSS，对于程序员来说是最自然、高效的方式，强烈推荐。</p>
+
+<ul>
+<li><a href="https://github.com/rtfeldman/elm-css">https://github.com/rtfeldman/elm-css</a></li>
+</ul>
+
+<h3 id="javascript-互操作">JavaScript 互操作</h3>
+
+<pre><code>port modelOut : JsModel.Type -&gt; Cmd msg
+port msgIn : ((String, String, Params) -&gt; msg) -&gt; Sub msg
+</code></pre>
+
+<p>只有两个接口，一个是把最新的数据模型传给 JavaScript，一个是给 Elm 发送消息，其实也就够用了。</p>
+
+<p>比较麻烦的是这里的 model 只能使用与 JavaScript 兼容的 Elm 数据结构，像是 Union 就不能用，实际应用中是加了一层处理，把完整的 model 做了一次包装，或者裁剪掉可以不用的部分，或是编码成支持的格式，不是太完美，也增加了代码量，好在比较简单直接，不会显著降低代码质量。</p>
+
+<p>最完美的方案是如果能解决界面部分的 Elm 化，就不需要这两个接口了， 那么相关联的代码也都可以删掉了。</p>
+
+<h3 id="令人愉悦的重构">令人愉悦的重构</h3>
+
+<p>过程中最让人愉悦的部分大概是代码的演化与重构了，不论是逻辑关系从一对一改为一对多，改变模块的覆盖功能，调整外部请求的流程，往往能比预期更快的完成，确实常常是编译通过，一次运行就通过了，感觉上像是有了很多自动实现的单元测试，重构代码还不用重构测试，每次都感觉选择 Elm 实在是太正确了，否则在 JavaScript 的世界里，不知要花多少时间。</p>
+
+<h2 id="过程和思考">过程和思考</h2>
+
+<p>编码时往往容易被问题带着走，也常常会发现在用正确的方式解决着错误的问题，尤其是相对反常规的做法，更是会有隐藏的风险。</p>
+
+<h3 id="如何作出引入-elm-的选择">如何作出引入 Elm 的选择</h3>
+
+<p>之前几年都是以 C# 为主，对于 JavaScript 这样的解释型，动态弱类型语言不是很有兴趣，以前公司的 Python 项目也遇到过不少测试没能覆盖，上线遇到&rdquo;惊喜&rdquo;的先例。</p>
+
+<p>之前看过 Elm 的材料，没实际做过项目，印象还是挺好的。</p>
+
+<p>接到任务时的第一反应是照着教程用最简单的方式尽快出个 Demo 就好了，一切都按照官方文档来，尽量不引入外部依赖。实际上手才发现没那么简单，官方没有提到任何对数据的管理方式，纯手写逻辑又太不可控，考虑是否引入 Redux 这样的框架，以前 nodejs 用过的 async 库比较大，引入了一个支持 waterfall 的 weachy，再加一个消息转发的 postal，附带着又带进来 lodash， 这样下来依赖也越来越多，而且还是很重的拼凑的感觉，有入坑的预感。</p>
+
+<p>于是用了一个周末的时间尝试了 Elm 方案，效果出乎意料的好，依赖全部删掉，重写了部分核心功能，直觉上是个正确的方向，后来搞定了微信接口的封装，又解决了行为串联，和子模块组织的设计之后，开发效率开始上来了，质量上比之前的 JavaScript 版本则是质的提高。</p>
+
+<h3 id="前期磨合">前期磨合</h3>
+
+<p>全新的语言、架构，产生大量的细节问题，要解决、调研，如果是个纯粹的练手项目，那么有足够的时间，而当前的项目又需要尽早上线，说实话压力是很大的，每天都得加班加点，还好进展一直都有，大概在在写到第三、四天以后，体会到了视角的变化，感觉能从函数式的角度来理解系统了，之后就进入了比较顺利的阶段。</p>
+
+<h3 id="开发效率与体验">开发效率与体验</h3>
+
+<p>这个其实确实不好衡量，例如一个非常熟练的 JavaScript 程序员，仍然很可能可以比我做的更快，去掉前期学习的部分，差距会更大。</p>
+
+<p>自己的感觉是很不错的，抛掉学习的成本，代码的增长还是很快的，尤其是质量很好，不会带来复杂性失控的问题。</p>
+
+<p>至于开发体验的话，对我来说是近乎完美的体验，在可预见的将来，我想都不会回到原生 JavaScript 开发的方式上去，而且也必定会更加深入的采用函数式的技术或方式进行开发。</p>
+
+<h3 id="潜在风险">潜在风险？</h3>
+
+<p>对于这一类编译到 JavaScript 的语言来说，首要的问题是编译器是否稳定可靠，如果不行的化调试难度就太大了，Elm 的编译器本身是用 Haskell 写的，虽然是开源的，我也还没有具体看过，到目前为止还没有碰到过任何这方面的问题。</p>
+
+<p>Elm 现在的版本是 0.18，并不会保证新版本的完全向后兼容，像是之前 0.17 更新的时候把原本的 JavaScript 互操作方式改了，又把 RFP （Reactive Functional Programming）的部分做了较大的调整，社区里也有些意见，有些包不更新的化，新的版本中也没法用。我看到的是改的结果确实很好，迁移的难度也不大，还是利大于弊的状态。</p>
+
+<p>剩下的就是小众选择的通病了，难找人，难找资料，信息基本都是英文的。相关的包也少的多，不过另一方面，像 Node.js 或者 Python 这么多的包，要找到合用的也挺难的，做对比也费时费力，往往让人很焦虑。</p>
+
+<h2 id="痛点与将来">痛点与将来</h2>
+
+<p>上面主要是优点，也还是遗留了一些痛点，篇幅所限，就不展开了。</p>
+
+<ul>
+<li>JavaScript 互操作的限制</li>
+<li>相似类型的代码重用</li>
+<li>模式化的代码</li>
+<li>完全替代界面端 JavaScript 和 WXML？</li>
+</ul>
+
+<h2 id="附录">附录</h2>
+
+<h3 id="术语">术语</h3>
+
+<table>
+<thead>
+<tr>
+<th>中文</th>
+<th>英文</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>不可变数据</td>
+<td>Immutable Data</td>
+</tr>
+
+<tr>
+<td>函数式语言</td>
+<td>Functional Language</td>
+</tr>
+
+<tr>
+<td>强类型</td>
+<td>Strong Type</td>
+</tr>
+
+<tr>
+<td>静态类型</td>
+<td>Static Type</td>
+</tr>
+
+<tr>
+<td>柯里化</td>
+<td>Currying</td>
+</tr>
+
+<tr>
+<td>运行时例外</td>
+<td>Runtime Exception</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="链接">链接</h3>
+
+<ul>
+<li><a href="http://elm-lang.org/">Elm 官网</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96">柯里化</a></li>
+</ul>
+
+	</div>
+  </div>
+</article>
+
+<div class="row">
+    <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1">
+    <ul class="pager blog-pager">
+      
+      <li class="previous">
+        <a href="http://cn.yjpark.org/blog/2015/02/26/data-and-metadata-in-game-development-architect/" data-toggle="tooltip" data-placement="top" title="游戏开发架构中的数据与元数据">&larr; Previous Post</a>
+      </li>
+      
+      
+    </ul>
+  </div>
+</div>
+
+
+
+
+    
+<div class="ds-thread" data-thread-key="" data-title="Elm 语言开发微信小程序" data-url="http://cn.yjpark.org/blog/2017/01/15/elm-with-wechat-app/"></div>
+
+
+
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"yjpark"};
+
+    (function() {
+     var ds = document.createElement('script');
+     ds.type = 'text/javascript';ds.async = true;
+     ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+     ds.charset = 'UTF-8';
+     (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+    </script>
+
+
+
+
+
+      
+
+    </div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/yjpark" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		      
+          <li>
+            <a href="https://twitter.com/yjpark" title="Twitter">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		      
+          <li>
+            <a href="mailto:yjpark@gmail.com" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		      
+	    	  
+
+    		  <li>
+      			<a href="http://cn.yjpark.org/index.xml" title="RSS">
+      			  <span class="fa-stack fa-lg">
+        				<i class="fa fa-circle fa-stack-2x"></i>
+        				<i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      			  </span>
+      			</a>
+    		  </li>
+
+        </ul>
+        <p class="copyright text-muted">
+    		  YJ Park
+    		  &nbsp;&bull;&nbsp;
+    		  2017
+
+    		  
+    		  &nbsp;&bull;&nbsp;
+    		  <a href="http://cn.yjpark.org/">YJ Park 之程序人生</a>
+    		  
+  	    </p>
+  	        
+    		<p class="theme-by text-muted">
+    		  Theme based on
+    		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="http://cn.yjpark.org/js/jquery-1.11.2.min.js"></script>
+<script src="http://cn.yjpark.org/js/bootstrap.min.js"></script>
+<script src="http://cn.yjpark.org/js/main.js"></script>
+
+<script src="http://cn.yjpark.org/js/paper-full.min.js"></script>
+<script type="text/paperscript" src="js/paper-sea.js" canvas="paper-background">
+</script>
+
+
+
+
+  </body>
+</html>
