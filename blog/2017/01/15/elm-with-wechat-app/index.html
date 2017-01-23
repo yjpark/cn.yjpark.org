@@ -12,7 +12,7 @@
 
   
 
-  <meta name="generator" content="Hugo 0.16" />
+  <meta name="generator" content="Hugo 0.17" />
 
   <link rel="alternate" href="http://cn.yjpark.org/index.xml" type="application/rss+xml" title="YJ Park 之程序人生">
 
@@ -28,7 +28,7 @@
   
   <meta property="og:title" content="Elm 语言开发微信小程序" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/" />
+  <meta property="og:url" content="/blog/2017/01/15/elm-with-wechat-app//" />
   <meta property="og:image" content="img/yjpark_icon.png" />
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
@@ -103,9 +103,7 @@
 <article>
   <div class="row">
     <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1">
-	  
-
-<p>由于工作需要，最近进行了一些目前很热门的微信小程序开发，技术选型的过程和结果都有些值得分享的体会，尝试做个简要的介绍。</p>
+	  <p>由于工作需要，最近进行了一些目前很热门的微信小程序开发，技术选型的过程和结果都有些值得分享的体会，尝试做个简要的介绍。</p>
 
 <p>先说结果，核心的逻辑采用了 Elm 语言开发，编译到 JavaScript ，界面显示还是标准的 JavaScript 和 WXML。</p>
 
@@ -124,6 +122,8 @@
 <p>过去两周，写了大约 5000 行的 Elm 代码，感觉上面的描述还是挺靠谱的，和手写 JavaScript 相比，确实令人愉悦。下面简单分析下技术上 Elm 是如何做到的。</p>
 
 <p>（这篇文章以概念和经验介绍为主，就基本不上代码了，以后尽量有后续的详细介绍）</p>
+
+<p></p>
 
 <h3 id="强类型-静态类型的编译语言">强类型，静态类型的编译语言</h3>
 
@@ -250,7 +250,7 @@ encode info =
 <li><a href="https://github.com/mpdairy/elm-component-updater">https://github.com/mpdairy/elm-component-updater</a></li>
 </ul>
 
-<p>友情提示：一定化些时间把里面的示例完全看懂，明白了以后概念是很清晰的，实际使用中也很灵活。</p>
+<p>友情提示：一定花些时间把里面的示例完全看懂，明白了以后概念是很清晰的，实际使用中也很灵活。</p>
 
 <p>这个话题有点大，要说清楚得不小的篇幅，只能留到以后了。</p>
 
@@ -388,7 +388,6 @@ port msgIn : ((String, String, Params) -&gt; msg) -&gt; Sub msg
 <li><a href="http://elm-lang.org/">Elm 官网</a></li>
 <li><a href="https://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96">柯里化</a></li>
 </ul>
-
 	</div>
   </div>
 </article>
@@ -402,30 +401,14 @@ port msgIn : ((String, String, Params) -&gt; msg) -&gt; Sub msg
       </li>
       
       
+      <li class="next">
+        <a href="http://cn.yjpark.org/blog/2017/01/23/elm-use-sub-module/" data-toggle="tooltip" data-placement="top" title="Elm 中使用子模块的一种方法">Next Post &rarr;</a>
+      </li>
+      
     </ul>
   </div>
 </div>
 
-
-
-
-    
-<div class="ds-thread" data-thread-key="" data-title="Elm 语言开发微信小程序" data-url="http://cn.yjpark.org/blog/2017/01/15/elm-with-wechat-app/"></div>
-
-
-
-<script type="text/javascript">
-    var duoshuoQuery = {short_name:"yjpark"};
-
-    (function() {
-     var ds = document.createElement('script');
-     ds.type = 'text/javascript';ds.async = true;
-     ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-     ds.charset = 'UTF-8';
-     (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-     })();
-    </script>
 
 
 

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>技术心得 on YJ Park 之程序人生</title>
-    <link>http://cn.yjpark.org/categories/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/</link>
-    <description>Recent content in 技术心得 on YJ Park 之程序人生</description>
+    <title>YJ Park 之程序人生</title>
+    <link>http://cn.yjpark.org/categories/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/index.xml</link>
+    <description>Recent content on YJ Park 之程序人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <managingEditor>yjpark@gmail.com (YJ Park)</managingEditor>
     <webMaster>yjpark@gmail.com (YJ Park)</webMaster>
     <copyright>This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 26 Feb 2015 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://cn.yjpark.org/categories/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
@@ -18,9 +17,7 @@
       <pubDate>Thu, 26 Feb 2015 00:00:00 +0000</pubDate>
       <author>yjpark@gmail.com (YJ Park)</author>
       <guid>http://cn.yjpark.org/blog/2015/02/26/data-and-metadata-in-game-development-architect/</guid>
-      <description>
-
-&lt;p&gt;从 2012年4月开始，一直都在开发一款平板电脑上的实时战略类游戏，开发平台是当下比较流行的 Unity3D，网络传输部分基于 uLink。是我自己的第一个 Unity3D 项目，在架构上下了不少功夫，项目相对比较复杂，作为架构师和主要的开发者（技术团队一共3个人，其他两个经验都比较少），工作量着实不小，开发过程还是相当痛苦的，相对应的收获也很不少。&lt;/p&gt;
+      <description>&lt;p&gt;从 2012年4月开始，一直都在开发一款平板电脑上的实时战略类游戏，开发平台是当下比较流行的 Unity3D，网络传输部分基于 uLink。是我自己的第一个 Unity3D 项目，在架构上下了不少功夫，项目相对比较复杂，作为架构师和主要的开发者（技术团队一共3个人，其他两个经验都比较少），工作量着实不小，开发过程还是相当痛苦的，相对应的收获也很不少。&lt;/p&gt;
 
 &lt;p&gt;目前项目的技术部分基本上算是告一段落，下一步更多的是市场和运营的工作，我的重心也会向服务器管理的部分转移，计划陆续把项目中的心得体会在这里用文字的形式保留一下。&lt;/p&gt;
 
@@ -31,6 +28,8 @@
 &lt;h2 id=&#34;元数据&#34;&gt;元数据&lt;/h2&gt;
 
 &lt;p&gt;元数据简单的说就是关于数据的数据，听上去可能比较抽象，其实并没有什么特别之处，例如关系式数据库中数据库的模式就是一种典型的元数据，定义了数据表的内容格式，包含哪些列，各自的数据类型及取值的约束，索引的定义等等，表中存储的内容是数据，模式就是数据的数据，也就是元数据。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;数据与元数据的关系&#34;&gt;数据与元数据的关系&lt;/h2&gt;
 
@@ -189,8 +188,7 @@
 &lt;li&gt;领域专属语言 DSL - Domain Specific Language&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;em&gt;对于程序员来说，英文是很重要的，可以说是事实上的通用语言，恐怕在可见的未来也不会发生转变，又不想在中文技术文章中夹入大量的英文单词，暂定的方式是对于无法翻译或无需翻译的直接用英文，例如：Unity3D；可以翻译的尽量用中文，有其他翻译或是可能有歧义的在附录中列出；主要的术语则也在附录中列出对照的英文，以方便有兴趣的读者做进一步的研究。&lt;/em&gt;&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;em&gt;对于程序员来说，英文是很重要的，可以说是事实上的通用语言，恐怕在可见的未来也不会发生转变，又不想在中文技术文章中夹入大量的英文单词，暂定的方式是对于无法翻译或无需翻译的直接用英文，例如：Unity3D；可以翻译的尽量用中文，有其他翻译或是可能有歧义的在附录中列出；主要的术语则也在附录中列出对照的英文，以方便有兴趣的读者做进一步的研究。&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -199,15 +197,15 @@
       <pubDate>Mon, 23 Feb 2015 00:00:00 +0000</pubDate>
       <author>yjpark@gmail.com (YJ Park)</author>
       <guid>http://cn.yjpark.org/blog/2015/02/23/indie-game-developer-survival-guide/</guid>
-      <description>
-
-&lt;h2 id=&#34;缘起&#34;&gt;缘起&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;缘起&#34;&gt;缘起&lt;/h2&gt;
 
 &lt;p&gt;今年1月的时候，公司协办了一次 Global Game Jam 北京站的活动，说是希望能做个简单的有关游戏开发的介绍，开始没太在意，想着应该是个不太正式的交流，也没怎么准备。结果到了一周前的时候才听说活动规模并不小，至少有100多人会参加，而且我的环节也是更像是演讲类型的。于是多少有些紧张，好久没当众说过话了，开始认真的选题，准备幻灯片。&lt;/p&gt;
 
 &lt;p&gt;自己做游戏也有一段时间了，技术上的（主要是 Unity 3D 相关的），非技术上的，收获和感触也还是挺多的，所以想了想还是选了一个比较宽泛的题目。用了一两天的时间准备了幻灯片，主要是一些觉的有意思或者也许对听众有点用的提纲，具体的内容想了些大概的轮廓，并没有特别清晰的排练过，想着准备的多一点，到时候说到哪里算哪里，不用注意控制时间，简单的多，说的时候压力也会小些。&lt;/p&gt;
 
 &lt;p&gt;活动当天来的人比想象的还多，多少还是有些紧张和兴奋，出乎意料的是除了介绍性的简单内容，准备的要点只说了两张幻灯左右，分配的30分钟时间就没了，准备的最完整的部分基本都没用上。虽然感觉效果还不错（其实从这种活动上，基本上没法真正的学到什么东西，如果能有一些支离的信息能给听众留下印象，或是感到受到了启发的话，对讲者来说就是很难得的了），不过有些意犹未尽的感觉。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
 
 &lt;p&gt;之前也断断续续写过些博客，因为中文水平和打字速度的问题，内容也是技术为主，大部分都是用英文写的，就想着借这个机会，开了个中文的博客，希望能提高提高中文能力。&lt;/p&gt;
 
@@ -660,8 +658,7 @@
 
 
 &lt;script&gt;initPhotoSwipeFromDOM(&#39;.gallery&#39;);&lt;/script&gt;
-&lt;/p&gt;
-</description>
+&lt;/p&gt;</description>
     </item>
     
   </channel>

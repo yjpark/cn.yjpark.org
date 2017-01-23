@@ -12,7 +12,7 @@
 
   
 
-  <meta name="generator" content="Hugo 0.16" />
+  <meta name="generator" content="Hugo 0.17" />
 
   <link rel="alternate" href="http://cn.yjpark.org/index.xml" type="application/rss+xml" title="YJ Park 之程序人生">
 
@@ -91,6 +91,38 @@
         
         
         <article class="post-preview">
+          <a href="http://cn.yjpark.org/blog/2017/01/23/elm-use-sub-module/">
+      	  <h2 class="post-title">Elm 中使用子模块的一种方法</h2>
+
+      	  
+          </a>
+
+          <p class="post-meta">
+            Posted on January 23, 2017
+          </p>
+
+          <div class="post-entry">
+            <h2 id="为什么需要引入子模块">为什么需要引入子模块？</h2>
+
+<p>随着代码量的增加，相关逻辑日渐复杂，需要维护的状态和传递的消息也迅速的增加起来。</p>
+
+<p>Elm 的架构文档中并没有详细说明如何组织比较复杂的项目，我调查中看到的文章中的方案也大多仍然需要模块间的耦合，实际使用中并不能得到满意的效果。</p>
+
+<h2 id="期望达到的效果">期望达到的效果</h2>
+
+<p>首先需要做到的是代码层面的分离，模块内部实现细节的修改对外部来说尽量不可见，减少代码的耦合程度，便于开发。</p>
+
+<p>下一个阶段的目标是模块的可重用性，除了简单的函数层面的重用，在更高层次上也有很多相似性，例如如果由于应用场景的考虑，需要发布多个微信小程序的话，其中有不少逻辑是可以共用的，例如微信端用户登录、信息获取，服务后台的 Session 管理，等等。</p>
+
+<p>模块之间的交互应尽量简单，可以用可维护的方式进行组织。</p>
+
+<p></p>
+      	  <a href="http://cn.yjpark.org/blog/2017/01/23/elm-use-sub-module/" class="post-read-more">[Read&nbsp;More]</a>
+          </div>
+
+         </article>
+        
+        <article class="post-preview">
           <a href="http://cn.yjpark.org/blog/2017/01/15/elm-with-wechat-app/">
       	  <h2 class="post-title">Elm 语言开发微信小程序</h2>
 
@@ -122,6 +154,7 @@
 
 <p>（这篇文章以概念和经验介绍为主，就基本不上代码了，以后尽量有后续的详细介绍）</p>
 
+<p></p>
       	  <a href="http://cn.yjpark.org/blog/2017/01/15/elm-with-wechat-app/" class="post-read-more">[Read&nbsp;More]</a>
           </div>
 
@@ -151,6 +184,7 @@
 
 <p>元数据简单的说就是关于数据的数据，听上去可能比较抽象，其实并没有什么特别之处，例如关系式数据库中数据库的模式就是一种典型的元数据，定义了数据表的内容格式，包含哪些列，各自的数据类型及取值的约束，索引的定义等等，表中存储的内容是数据，模式就是数据的数据，也就是元数据。</p>
 
+<p></p>
       	  <a href="http://cn.yjpark.org/blog/2015/02/26/data-and-metadata-in-game-development-architect/" class="post-read-more">[Read&nbsp;More]</a>
           </div>
 
@@ -176,6 +210,7 @@
 
 <p>活动当天来的人比想象的还多，多少还是有些紧张和兴奋，出乎意料的是除了介绍性的简单内容，准备的要点只说了两张幻灯左右，分配的30分钟时间就没了，准备的最完整的部分基本都没用上。虽然感觉效果还不错（其实从这种活动上，基本上没法真正的学到什么东西，如果能有一些支离的信息能给听众留下印象，或是感到受到了启发的话，对讲者来说就是很难得的了），不过有些意犹未尽的感觉。</p>
 
+<p></p>
       	  <a href="http://cn.yjpark.org/blog/2015/02/23/indie-game-developer-survival-guide/" class="post-read-more">[Read&nbsp;More]</a>
           </div>
 
