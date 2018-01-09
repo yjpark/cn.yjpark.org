@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Elm 中使用子模块的一种方法</title>
+
+  <meta name="author" content="YJ Park" />
+
+  
+
+  <meta name="generator" content="Hugo 0.17" />
+
+  <link rel="alternate" href="http://cn.yjpark.org/index.xml" type="application/rss+xml" title="YJ Park 之程序人生">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://cn.yjpark.org/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://cn.yjpark.org/css/main.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://cn.yjpark.org/css/rouge.css" />
+
+  <link rel="stylesheet" href="http://cn.yjpark.org/css/paper-canvas.css" />
+
+  
+  <meta property="og:title" content="Elm 中使用子模块的一种方法" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/blog/2017/01/23/elm-use-sub-module//" />
+  <meta property="og:image" content="img/yjpark_icon.png" />
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://cn.yjpark.org/">YJ Park 之程序人生</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+          <a title="博客" href="/">博客</a>
+  	      </li>
+  	    
+      
+        
+          <li>
+          <a title="关于" href="/page/about/">关于</a>
+  	      </li>
+  	    
+      
+      </ul>
+    </div>
+
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+      
+          <a title="YJ Park 之程序人生" href="http://cn.yjpark.org/">
+              <img class="avatar-img" src="http://cn.yjpark.org/img/yjpark_icon.png" alt="YJ Park 之程序人生" />
+          </a>
+      
+	  </div>
+	</div>
+
+  </div>
+</nav>
+
+    <canvas id="paper-background" resize></canvas>
+
+    <div role="main" class="container main-content">
+
+      
+        <header class="header-post">
+  <div class="row">
+    <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1">
+      <div class="post-heading">
+        <h1>Elm 中使用子模块的一种方法</h1>
+        
+        <span class="post-meta">Posted on January 23, 2017</span>
+      </div>
+     </div>
+  </div>
+</header>
+
+<article>
+  <div class="row">
+    <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1">
+	  <h2 id="为什么需要引入子模块">为什么需要引入子模块？</h2>
+
+<p>随着代码量的增加，相关逻辑日渐复杂，需要维护的状态和传递的消息也迅速的增加起来。</p>
+
+<p>Elm 的架构文档中并没有详细说明如何组织比较复杂的项目，我调查中看到的文章中的方案也大多仍然需要模块间的耦合，实际使用中并不能得到满意的效果。</p>
+
+<h2 id="期望达到的效果">期望达到的效果</h2>
+
+<p>首先需要做到的是代码层面的分离，模块内部实现细节的修改对外部来说尽量不可见，减少代码的耦合程度，便于开发。</p>
+
+<p>下一个阶段的目标是模块的可重用性，除了简单的函数层面的重用，在更高层次上也有很多相似性，例如如果由于应用场景的考虑，需要发布多个微信小程序的话，其中有不少逻辑是可以共用的，例如微信端用户登录、信息获取，服务后台的 Session 管理，等等。</p>
+
+<p>模块之间的交互应尽量简单，可以用可维护的方式进行组织。</p>
+
+<p></p>
+
+<h2 id="如何拆分子模块">如何拆分子模块</h2>
+
+<p>个人的习惯是先从数据开始设计，在 Model 的部分先做分割，之后进行 Msg 的设计，宗旨是把聚合度高的部分放在一起，封装成独立的模块。</p>
+
+<h2 id="子模块间如何交互">子模块间如何交互</h2>
+
+<p>多个模块需要彼此协调才能完成完整的应用逻辑，根据具体情况有以下的情境</p>
+
+<h3 id="数据依赖">数据依赖</h3>
+
+<p>某个模块需要外部提供所需的数据，有几种处理的方法，可以根据具体需要进行选择</p>
+
+<ul>
+<li>作为输入事件的参数传递进来，只在相关事件的处理中使用</li>
+<li>封装成内部的数据，加入 Model，在需要时访问</li>
+<li>作为 update 方法的参数，每次更新时都可以访问到</li>
+</ul>
+
+<h3 id="事件触发">事件触发</h3>
+
+<p>对于子模块来说，其实不用了解事件的具体来源，可以是模块自身，可以是其它模块，或是应用层面的用户输入。只要把自身的生命周期管理好即可，由于 Elm 架构的函数式和不可变特性，一般来说调试也很方便，只要观察 Msg 的序列以及相应的 Model 的变化往往就能找到问题所在。</p>
+
+<h2 id="wxapp-子模块">WxApp 子模块</h2>
+
+<p>由于所有的微信小程序都需要进行用户身份的管理，在 elm-wx-app 中提供了一个基本的身份认证子模块，在 API 调用之上提供了更高一层的接口。</p>
+
+<p>下面列出了部分的代码，结构相对比较简单，感兴趣的话可以 Clone 完整的版本。</p>
+
+<p>（目前的版本还比较简单，接口也没有完全固定下来）</p>
+
+<h3 id="model">Model</h3>
+
+<pre><code>type alias Type =
+    { systemInfo : SystemInfo.Type
+    , userCode : String
+    , userInfo : UserInfo.Type
+    , userSecret : UserSecret.Type
+    , tabs : List UiTab.Type
+    , currentTabKey : UiTab.Key
+    , pages : List UiPage.Type
+    }
+</code></pre>
+
+<h3 id="msg">Msg</h3>
+
+<pre><code>type Msg
+    = DoInit
+    | DoGetSystemInfo
+    | DoCheckSession
+    | DoLogin
+    | DoLoadWxModel
+    | DoGetUserInfo
+    | GetSystemInfoMsg (Result Error GetSystemInfo.Msg)
+    | CheckSessionMsg (Result Error CheckSession.Msg)
+    | LoginMsg (Result Error Login.Msg)
+    | LoadWxModelMsg (Result Error WxModel.Type)
+...
+</code></pre>
+
+<h3 id="update">update</h3>
+
+<pre><code>update : Msg -&gt; Model -&gt; (Model, Cmd Msg)
+update msg model =
+    case msg of
+        DoInit -&gt;
+            ( model
+            , cmd DoGetSystemInfo
+            )
+        DoGetSystemInfo -&gt;
+            ( model
+            , GetSystemInfo.cmd GetSystemInfoMsg
+            )
+        DoCheckSession -&gt;
+            ( model
+            , CheckSession.cmd CheckSessionMsg
+            )
+        DoLogin -&gt;
+            ( model
+            , Login.cmd LoginMsg
+            )
+...
+</code></pre>
+
+<h2 id="wxapp-wrapper-实例分析">WxApp Wrapper 实例分析</h2>
+
+<h3 id="wrapper">wrapper</h3>
+
+<p>wrapper 的细节请看 elm-component-updater 的实现代码，基本上是从主模型中访问子模型（get），调用子模块的 update，之后再把返回的子模型更新到主模型中（set）</p>
+
+<pre><code>wrapper : Wrapper Msg Wx.Msg
+wrapper =
+    wrap WxMod
+        { get = Just &lt;&lt; .wx
+        , set = \modModel model -&gt; { model | wx = modModel }
+        , update = Wx.update
+        , react = reaction
+        }
+
+cmd msg =
+    toCmd msg
+        |&gt; Cmd.map wrapper
+</code></pre>
+
+<h3 id="reaction">reaction</h3>
+
+<p>reaction 的目的是对于特定的子模块事件产生相应的外部事件，来达到对其他模块的控制。</p>
+
+<pre><code>reaction modMsg modModel model =
+    model ! []
+        |&gt; case modMsg of
+            Wx.PopPageMsg pageKey (Ok _) -&gt;
+                case List.length modModel.pages of
+                    0 -&gt;
+                        addCmd &lt;| cmd &lt;| Wx.SwitchTab &quot;dialogue&quot;
+                    _ -&gt;
+                        noOperation
+            _ -&gt;
+                noOperation
+
+</code></pre>
+
+<h2 id="主应用中的相关代码">主应用中的相关代码</h2>
+
+<h3 id="model-1">model</h3>
+
+<p>首先是在 Model 中包含子模块的部分</p>
+
+<pre><code>type alias Type =
+    { rev : Int
+    , wx : Wx.Model
+...
+</code></pre>
+
+<h3 id="事件定义">事件定义</h3>
+
+<pre><code>import Updater
+import WxApp.Mod as Wx
+type alias Delegate = (Updater Model Msg)
+
+type Msg
+    = WxMod Delegate
+    | WxMsg Wx.Msg
+</code></pre>
+
+<p>WxMod 代表由 Wrapper 处理的事件，WxMsg 则是普通事件，需要在 update 中转换为 Wrapper 事件。</p>
+
+<p>这里做区分的原因是在 Elm 中无法循环 import，在被 WxApp Wrapper 引用的代码中如果也需要通知 WxApp 的模块，则只能产生一个 WxMsg 类型的事件。</p>
+
+<h3 id="update-1">update</h3>
+
+<pre><code>import Wrapper.Wx as Wx
+
+updateMod : Msg -&gt; (Model, Cmd Msg) -&gt; (Model, Cmd Msg)
+updateMod msg (model, cmd) =
+    case msg of
+        WxMod delegate -&gt;
+            delegate model
+        WxMsg msg -&gt;
+            (model, Wx.cmd msg)
+...
+</code></pre>
+
+<p>可以看到这里对于 WxMsg 类型的事件使用 wrapper 做了一次转换，略显繁琐，不确定是否有更好的方式。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>实际开发中应用以上方式写了不少代码，在模块的分隔上感觉还是一种不错的方法。</p>
+
+<p>在需要调整模块结构的情况下，Elm 作为静态类型语言提供了很大的帮助，编译器可以发现不匹配的接口，重构起来有一气呵成的感觉。</p>
+
+<h2 id="附录">附录</h2>
+
+<h3 id="链接">链接</h3>
+
+<ul>
+<li><a href="https://guide.elm-lang.org/reuse/checkboxes.html">Elm: Scaling the Elm Architecture</a></li>
+<li><a href="https://github.com/mpdairy/elm-component-updater">elm-component-updater</a></li>
+<li><a href="https://github.com/yjpark/elm-wx-app">elm-wx-app</a></li>
+<li><a href="https://www.brianthicks.com/post/2016/07/05/duplicate-message-or-update-contexts-in-elm-components/">Duplicate, Message, or Update? Contexts in Elm Components</a></li>
+</ul>
+	</div>
+  </div>
+</article>
+
+<div class="row">
+    <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1">
+    <ul class="pager blog-pager">
+      
+      <li class="previous">
+        <a href="http://cn.yjpark.org/blog/2017/01/15/elm-with-wechat-app/" data-toggle="tooltip" data-placement="top" title="Elm 语言开发微信小程序">&larr; Previous Post</a>
+      </li>
+      
+      
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+
+      
+
+    </div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/yjpark" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		      
+          <li>
+            <a href="https://twitter.com/yjpark" title="Twitter">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		      
+          <li>
+            <a href="mailto:yjpark@gmail.com" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		      
+	    	  
+
+    		  <li>
+      			<a href="http://cn.yjpark.org/index.xml" title="RSS">
+      			  <span class="fa-stack fa-lg">
+        				<i class="fa fa-circle fa-stack-2x"></i>
+        				<i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      			  </span>
+      			</a>
+    		  </li>
+
+        </ul>
+        <p class="copyright text-muted">
+    		  YJ Park
+    		  &nbsp;&bull;&nbsp;
+    		  2017
+
+    		  
+    		  &nbsp;&bull;&nbsp;
+    		  <a href="http://cn.yjpark.org/">YJ Park 之程序人生</a>
+    		  
+  	    </p>
+  	        
+    		<p class="theme-by text-muted">
+    		  Theme based on
+    		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="http://cn.yjpark.org/js/jquery-1.11.2.min.js"></script>
+<script src="http://cn.yjpark.org/js/bootstrap.min.js"></script>
+<script src="http://cn.yjpark.org/js/main.js"></script>
+
+<script src="http://cn.yjpark.org/js/paper-full.min.js"></script>
+<script type="text/paperscript" src="js/paper-sea.js" canvas="paper-background">
+</script>
+
+
+
+
+  </body>
+</html>

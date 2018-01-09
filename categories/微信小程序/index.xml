@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>微信小程序 on YJ Park 之程序人生</title>
-    <link>http://cn.yjpark.org/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</link>
-    <description>Recent content in 微信小程序 on YJ Park 之程序人生</description>
+    <title>YJ Park 之程序人生</title>
+    <link>http://cn.yjpark.org/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/index.xml</link>
+    <description>Recent content on YJ Park 之程序人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <managingEditor>yjpark@gmail.com (YJ Park)</managingEditor>
     <webMaster>yjpark@gmail.com (YJ Park)</webMaster>
     <copyright>This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 15 Jan 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://cn.yjpark.org/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
@@ -18,9 +17,7 @@
       <pubDate>Sun, 15 Jan 2017 00:00:00 +0000</pubDate>
       <author>yjpark@gmail.com (YJ Park)</author>
       <guid>http://cn.yjpark.org/blog/2017/01/15/elm-with-wechat-app/</guid>
-      <description>
-
-&lt;p&gt;由于工作需要，最近进行了一些目前很热门的微信小程序开发，技术选型的过程和结果都有些值得分享的体会，尝试做个简要的介绍。&lt;/p&gt;
+      <description>&lt;p&gt;由于工作需要，最近进行了一些目前很热门的微信小程序开发，技术选型的过程和结果都有些值得分享的体会，尝试做个简要的介绍。&lt;/p&gt;
 
 &lt;p&gt;先说结果，核心的逻辑采用了 Elm 语言开发，编译到 JavaScript ，界面显示还是标准的 JavaScript 和 WXML。&lt;/p&gt;
 
@@ -39,6 +36,8 @@
 &lt;p&gt;过去两周，写了大约 5000 行的 Elm 代码，感觉上面的描述还是挺靠谱的，和手写 JavaScript 相比，确实令人愉悦。下面简单分析下技术上 Elm 是如何做到的。&lt;/p&gt;
 
 &lt;p&gt;（这篇文章以概念和经验介绍为主，就基本不上代码了，以后尽量有后续的详细介绍）&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;强类型-静态类型的编译语言&#34;&gt;强类型，静态类型的编译语言&lt;/h3&gt;
 
@@ -165,7 +164,7 @@ encode info =
 &lt;li&gt;&lt;a href=&#34;https://github.com/mpdairy/elm-component-updater&#34;&gt;https://github.com/mpdairy/elm-component-updater&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;友情提示：一定化些时间把里面的示例完全看懂，明白了以后概念是很清晰的，实际使用中也很灵活。&lt;/p&gt;
+&lt;p&gt;友情提示：一定花些时间把里面的示例完全看懂，明白了以后概念是很清晰的，实际使用中也很灵活。&lt;/p&gt;
 
 &lt;p&gt;这个话题有点大，要说清楚得不小的篇幅，只能留到以后了。&lt;/p&gt;
 
@@ -302,8 +301,7 @@ port msgIn : ((String, String, Params) -&amp;gt; msg) -&amp;gt; Sub msg
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://elm-lang.org/&#34;&gt;Elm 官网&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96&#34;&gt;柯里化&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
   </channel>
