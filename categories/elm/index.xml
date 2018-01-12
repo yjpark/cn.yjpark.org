@@ -9,10 +9,33 @@
     <managingEditor>yjpark@gmail.com (YJ Park)</managingEditor>
     <webMaster>yjpark@gmail.com (YJ Park)</webMaster>
     <copyright>This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 15 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Jan 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://cn.yjpark.org/categories/elm/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Elm 中使用子模块的一种方法</title>
+      <link>http://cn.yjpark.org/blog/2017/01/23/elm-use-sub-module/</link>
+      <pubDate>Mon, 23 Jan 2017 00:00:00 +0000</pubDate>
+      <author>yjpark@gmail.com (YJ Park)</author>
+      <guid>http://cn.yjpark.org/blog/2017/01/23/elm-use-sub-module/</guid>
+      <description>&lt;h2 id=&#34;为什么需要引入子模块&#34;&gt;为什么需要引入子模块？&lt;/h2&gt;
+
+&lt;p&gt;随着代码量的增加，相关逻辑日渐复杂，需要维护的状态和传递的消息也迅速的增加起来。&lt;/p&gt;
+
+&lt;p&gt;Elm 的架构文档中并没有详细说明如何组织比较复杂的项目，我调查中看到的文章中的方案也大多仍然需要模块间的耦合，实际使用中并不能得到满意的效果。&lt;/p&gt;
+
+&lt;h2 id=&#34;期望达到的效果&#34;&gt;期望达到的效果&lt;/h2&gt;
+
+&lt;p&gt;首先需要做到的是代码层面的分离，模块内部实现细节的修改对外部来说尽量不可见，减少代码的耦合程度，便于开发。&lt;/p&gt;
+
+&lt;p&gt;下一个阶段的目标是模块的可重用性，除了简单的函数层面的重用，在更高层次上也有很多相似性，例如如果由于应用场景的考虑，需要发布多个微信小程序的话，其中有不少逻辑是可以共用的，例如微信端用户登录、信息获取，服务后台的 Session 管理，等等。&lt;/p&gt;
+
+&lt;p&gt;模块之间的交互应尽量简单，可以用可维护的方式进行组织。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Elm 语言开发微信小程序</title>

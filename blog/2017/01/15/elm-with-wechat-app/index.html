@@ -250,7 +250,7 @@ encode info =
 <li><a href="https://github.com/mpdairy/elm-component-updater">https://github.com/mpdairy/elm-component-updater</a></li>
 </ul>
 
-<p>友情提示：一定化些时间把里面的示例完全看懂，明白了以后概念是很清晰的，实际使用中也很灵活。</p>
+<p>友情提示：一定花些时间把里面的示例完全看懂，明白了以后概念是很清晰的，实际使用中也很灵活。</p>
 
 <p>这个话题有点大，要说清楚得不小的篇幅，只能留到以后了。</p>
 
@@ -401,30 +401,39 @@ port msgIn : ((String, String, Params) -&gt; msg) -&gt; Sub msg
       </li>
       
       
+      <li class="next">
+        <a href="http://cn.yjpark.org/blog/2017/01/23/elm-use-sub-module/" data-toggle="tooltip" data-placement="top" title="Elm 中使用子模块的一种方法">Next Post &rarr;</a>
+      </li>
+      
     </ul>
   </div>
 </div>
 
 
-
-
+<div class="row disqus-comments">
+  <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1">
+    <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
     
-<div class="ds-thread" data-thread-key="/blog/2017/01/15/elm-with-wechat-app/" data-title="Elm 语言开发微信小程序" data-url="http://cn.yjpark.org/blog/2017/01/15/elm-with-wechat-app/"></div>
-
-
-
-<script type="text/javascript">
-    var duoshuoQuery = {short_name:"yjpark"};
-
+    
+    
+    };
     (function() {
-     var ds = document.createElement('script');
-     ds.type = 'text/javascript';ds.async = true;
-     ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-     ds.charset = 'UTF-8';
-     (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-     })();
-    </script>
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yjpark" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>
 
 
 
@@ -511,6 +520,16 @@ port msgIn : ((String, String, Params) -&gt; msg) -&gt; Sub msg
 <script type="text/paperscript" src="js/paper-sea.js" canvas="paper-background">
 </script>
 
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2120845-10', 'auto');
+ga('send', 'pageview');
+</script>
 
 
 
