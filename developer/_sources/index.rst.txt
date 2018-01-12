@@ -3,18 +3,52 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Developer Manual's documentation!
-============================================
+软件开发人员手册
+================
+
+注意：手册中包含部分专有信息，相关链接可能指向私有代码仓库，请确认 github 已使用相关账号登录。
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: 基础知识
 
+   basic/data-structure.md
+   basic/object-oriented.md
 
+.. toctree::
+   :maxdepth: 2
+   :caption: 编程语言
 
-Indices and tables
-==================
+   languages/cs.md
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. toctree::
+   :maxdepth: 2
+   :caption: 开发平台
+
+   platforms/unity.md
+   platforms/orleans.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 开发工具
+
+   tools/shell.md
+   tools/git.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 开发框架
+
+   frameworks/dap-overview.md
+   frameworks/dap-core.md
+   frameworks/dap-lib.md
+   frameworks/dap-game.md
+   frameworks/dap-unity.md
+   frameworks/dap-orleans.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 项目相关
+
+   projects/peng-peng-tang.md
+   projects/warlock.md

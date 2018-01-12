@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Dap 框架概要 &mdash; Developer Manual  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Developer Manual  documentation" href="../index.html"/>
+        <link rel="next" title="DapCore" href="dap-core.html"/>
+        <link rel="prev" title="&lt;no title&gt;" href="../tools/git.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Developer Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">编程语言</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../languages/cs.html">C#</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发框架</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Dap 框架概要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#">设计目标</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">减少重复代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">基础逻辑抽象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">相关效率工具</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#">技术选择</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">强类型语言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">严格数据格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">大量使用泛型</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#">如何安装</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dap-core.html">DapCore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dap-lib.html">DapLib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dap-game.html">DapGame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dap-unity.html">DapUnity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dap-orleans.html">DapOrleans</a></li>
+</ul>
+<p class="caption"><span class="caption-text">项目相关</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../projects/peng-peng-tang.html">碰碰堂二期</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/warlock.html">人人竞技场</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Developer Manual</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Dap 框架概要</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/frameworks/dap-overview.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dap">
+<span id="dap"></span><h1>Dap 框架概要<a class="headerlink" href="#dap" title="Permalink to this headline">¶</a></h1>
+<p>Dap (Distributed Application Platform) 是由 YJPark 开发（2015年至今），支持跨设备，跨平台，跨角色应用、游戏系统的软件开发框架。</p>
+<p>基于个人经验，目前主要应用于多人实时游戏的项目开发，计划将来应用于应用、网站类的项目。</p>
+<p>目前的实现部分主要基于 C#，运行时支持包括：Unity3d，Orleans（DotNet Core），Xamarin.Forms (开发中)</p>
+<div class="section" id="">
+<span id="id1"></span><h2>设计目标<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="">
+<span id="id2"></span><h3>减少重复代码<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="">
+<span id="id3"></span><h3>基础逻辑抽象<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="">
+<span id="id4"></span><h3>相关效率工具<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="">
+<span id="id5"></span><h2>技术选择<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="">
+<span id="id6"></span><h3>强类型语言<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="">
+<span id="id7"></span><h3>严格数据格式<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="">
+<span id="id8"></span><h3>大量使用泛型<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="">
+<span id="id9"></span><h2>如何安装<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<p>目前的框架代码还在频繁迭代过程中，因此项目间的依赖需要手动操作。</p>
+<p>项目间依赖分为两种，Dll 方式，或是 Source 方式，项目间可能采取相对路径的符号链接，因此要求相关代码库的组织需要遵循给定的目录结构，具体请参考以下页面。</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/pettyfun/angeldnd.tools/blob/master/setup-angeldnd-repos">setup-angeldnd-repos</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dap-core.html" class="btn btn-neutral float-right" title="DapCore" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../tools/git.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, YJ Park.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

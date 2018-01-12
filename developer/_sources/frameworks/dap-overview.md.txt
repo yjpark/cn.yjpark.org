@@ -1,0 +1,31 @@
+# Dap 框架概要
+
+Dap (Distributed Application Platform) 是由 YJPark 开发（2015年至今），支持跨设备，跨平台，跨角色应用、游戏系统的软件开发框架。
+
+基于个人经验，目前主要应用于多人实时游戏的项目开发，计划将来应用于应用、网站类的项目。
+
+目前的实现部分主要基于 C#，运行时支持包括：Unity3d，Orleans（DotNet Core），Xamarin.Forms (开发中)
+
+## 设计目标
+
+### 减少重复代码
+
+### 基础逻辑抽象
+
+### 相关效率工具
+
+## 技术选择
+
+### 强类型语言
+
+### 严格数据格式
+
+### 大量使用泛型
+
+## 如何安装
+
+目前的框架代码还在频繁迭代过程中，因此项目间的依赖需要手动操作。
+
+项目间依赖分为两种，Dll 方式，或是 Source 方式，项目间可能采取相对路径的符号链接，因此要求相关代码库的组织需要遵循给定的目录结构，具体请参考以下页面。
+
+- [setup-angeldnd-repos](https://github.com/pettyfun/angeldnd.tools/blob/master/setup-angeldnd-repos)
