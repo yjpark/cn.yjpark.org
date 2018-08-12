@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Elm on YJ Park 之程序人生</title>
-    <link>/categories/elm/</link>
+    <link>http://cn.yjpark.org/categories/elm/</link>
     <description>Recent content in Elm on YJ Park 之程序人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
@@ -11,15 +11,15 @@
     <copyright>This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</copyright>
     <lastBuildDate>Mon, 23 Jan 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/elm/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://cn.yjpark.org/categories/elm/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Elm 中使用子模块的一种方法</title>
-      <link>/blog/2017/01/23/elm-use-sub-module/</link>
+      <link>http://cn.yjpark.org/blog/2017/01/23/elm-use-sub-module/</link>
       <pubDate>Mon, 23 Jan 2017 00:00:00 +0000</pubDate>
       <author>yjpark@gmail.com (YJ Park)</author>
-      <guid>/blog/2017/01/23/elm-use-sub-module/</guid>
+      <guid>http://cn.yjpark.org/blog/2017/01/23/elm-use-sub-module/</guid>
       <description>&lt;h2 id=&#34;为什么需要引入子模块&#34;&gt;为什么需要引入子模块？&lt;/h2&gt;
 
 &lt;p&gt;随着代码量的增加，相关逻辑日渐复杂，需要维护的状态和传递的消息也迅速的增加起来。&lt;/p&gt;
@@ -39,10 +39,10 @@
     
     <item>
       <title>Elm 语言开发微信小程序</title>
-      <link>/blog/2017/01/15/elm-with-wechat-app/</link>
+      <link>http://cn.yjpark.org/blog/2017/01/15/elm-with-wechat-app/</link>
       <pubDate>Sun, 15 Jan 2017 00:00:00 +0000</pubDate>
       <author>yjpark@gmail.com (YJ Park)</author>
-      <guid>/blog/2017/01/15/elm-with-wechat-app/</guid>
+      <guid>http://cn.yjpark.org/blog/2017/01/15/elm-with-wechat-app/</guid>
       <description>&lt;p&gt;由于工作需要，最近进行了一些目前很热门的微信小程序开发，技术选型的过程和结果都有些值得分享的体会，尝试做个简要的介绍。&lt;/p&gt;
 
 &lt;p&gt;先说结果，核心的逻辑采用了 Elm 语言开发，编译到 JavaScript ，界面显示还是标准的 JavaScript 和 WXML。&lt;/p&gt;

@@ -3,81 +3,81 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/blog/2017/01/23/elm-use-sub-module/</loc>
+    <loc>http://cn.yjpark.org/blog/2017/01/23/elm-use-sub-module/</loc>
     <lastmod>2017-01-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/2017/01/15/elm-with-wechat-app/</loc>
+    <loc>http://cn.yjpark.org/blog/2017/01/15/elm-with-wechat-app/</loc>
     <lastmod>2017-01-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/2015/02/26/data-and-metadata-in-game-development-architect/</loc>
+    <loc>http://cn.yjpark.org/blog/2015/02/26/data-and-metadata-in-game-development-architect/</loc>
     <lastmod>2015-02-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/2015/02/23/indie-game-developer-survival-guide/</loc>
+    <loc>http://cn.yjpark.org/blog/2015/02/23/indie-game-developer-survival-guide/</loc>
     <lastmod>2015-02-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/page/about/</loc>
+    <loc>http://cn.yjpark.org/page/about/</loc>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>http://cn.yjpark.org/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/elm/</loc>
+    <loc>http://cn.yjpark.org/categories/elm/</loc>
     <lastmod>2017-01-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/page/</loc>
+    <loc>http://cn.yjpark.org/page/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/</loc>
+    <loc>http://cn.yjpark.org/post/</loc>
     <lastmod>2017-01-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/search/</loc>
+    <loc>http://cn.yjpark.org/search/</loc>
     <priority>0.1</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>http://cn.yjpark.org/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>http://cn.yjpark.org/</loc>
     <lastmod>2017-01-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</loc>
+    <loc>http://cn.yjpark.org/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</loc>
     <lastmod>2017-01-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/</loc>
+    <loc>http://cn.yjpark.org/categories/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/</loc>
     <lastmod>2015-02-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/</loc>
+    <loc>http://cn.yjpark.org/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2015-02-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
