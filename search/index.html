@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>404 Page not found</title>
+  <title>Search Results</title>
 
   <meta name="author" content="YJ Park" />
 
@@ -26,9 +26,9 @@
   <link rel="stylesheet" href="/css/paper-canvas.css" />
 
   
-  <meta property="og:title" content="404 Page not found" />
+  <meta property="og:title" content="Search Results" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/" />
+  <meta property="og:url" content="/search//" />
   <meta property="og:image" content="img/yjpark_icon.png" />
 
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
@@ -86,17 +86,31 @@
 
 
 
-      <div role="main" class="container main-content">
-  
-  	    <div class="text-center">
-    	      <h1>Whoops, this page doesn't exist.</h1>
-    	      <h1>Move along. (404 error)</h1>
-    	      <br/>
     
-	      <img src="//img/404-southpark.jpg" />
-	    </div>
-	  
-	  </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.0/fuse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
+    <script src="/js/search.js"></script>
+    <div role="main" class="container main-content">
+      <form action="/search">
+        <input id="search-query" name="s"/>
+      </form>
+      <hr/>
+      <div id="search-results">
+      </div>
+    </div>
+    
+    <script id="search-result-template" type="text/x-js-template">
+        <div id="summary-${key}">
+          <h4><a href="${link}">${title}</a></h4>
+          <p>${snippet}</p>
+          ${ isset tags }<p>Tags: ${tags}</p>${ end }
+          ${ isset categories }<p>Categories: ${categories}</p>${ end }
+        </div>
+    </script>
+    <script>
+      document.getElementById('search-query').focus();
+    </script>
 
     <footer>
   <div class="container beautiful-jekyll-footer">
@@ -184,7 +198,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
 
 
   </body>

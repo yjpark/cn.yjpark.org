@@ -12,18 +12,18 @@
 
   
 
-  <meta name="generator" content="Hugo 0.32.4" />
+  <meta name="generator" content="Hugo 0.46" />
 
-  <link rel="alternate" href="http://cn.yjpark.org/index.xml" type="application/rss+xml" title="YJ Park 之程序人生">
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="YJ Park 之程序人生">
 
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="http://cn.yjpark.org/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="http://cn.yjpark.org/css/main.css" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
-  <link rel="stylesheet" href="http://cn.yjpark.org/css/rouge.css" />
+  <link rel="stylesheet" href="/css/rouge.css" />
 
-  <link rel="stylesheet" href="http://cn.yjpark.org/css/paper-canvas.css" />
+  <link rel="stylesheet" href="/css/paper-canvas.css" />
 
   
   <meta property="og:title" content="独立游戏程序员生存指南" />
@@ -31,10 +31,11 @@
   <meta property="og:url" content="/blog/2015/02/23/indie-game-developer-survival-guide//" />
   <meta property="og:image" content="img/yjpark_icon.png" />
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 
 
@@ -49,7 +50,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://cn.yjpark.org/">YJ Park 之程序人生</a>
+      <a class="navbar-brand" href="/">YJ Park 之程序人生</a>
     </div>
 
     <div class="collapse navbar-collapse" id="main-navbar">
@@ -73,8 +74,8 @@
 	<div class="avatar-container">
 	  <div class="avatar-img-border">
       
-          <a title="YJ Park 之程序人生" href="http://cn.yjpark.org/">
-              <img class="avatar-img" src="http://cn.yjpark.org/img/yjpark_icon.png" alt="YJ Park 之程序人生" />
+          <a title="YJ Park 之程序人生" href="/">
+              <img class="avatar-img" src="/img/yjpark_icon.png" alt="YJ Park 之程序人生" />
           </a>
       
 	  </div>
@@ -83,7 +84,7 @@
   </div>
 </nav>
 
-    <canvas id="paper-background" resize></canvas>
+
 
     <div role="main" class="container main-content">
 
@@ -575,7 +576,7 @@
       
       
       <li class="next">
-        <a href="http://cn.yjpark.org/blog/2015/02/26/data-and-metadata-in-game-development-architect/" data-toggle="tooltip" data-placement="top" title="游戏开发架构中的数据与元数据">Next Post &rarr;</a>
+        <a href="/blog/2015/02/26/data-and-metadata-in-game-development-architect/" data-toggle="tooltip" data-placement="top" title="游戏开发架构中的数据与元数据">Next Post &rarr;</a>
       </li>
       
     </ul>
@@ -607,9 +608,6 @@
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   </div>
 </div>
-
-
-
 
 
       
@@ -656,7 +654,7 @@
 	    	  
 
     		  <li>
-      			<a href="http://cn.yjpark.org/index.xml" title="RSS">
+      			<a href="/index.xml" title="RSS">
       			  <span class="fa-stack fa-lg">
         				<i class="fa fa-circle fa-stack-2x"></i>
         				<i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -672,7 +670,7 @@
 
     		  
     		  &nbsp;&bull;&nbsp;
-    		  <a href="http://cn.yjpark.org/">YJ Park 之程序人生</a>
+    		  <a href="/">YJ Park 之程序人生</a>
     		  
   	    </p>
   	        
@@ -685,23 +683,22 @@
   </div>
 </footer>
 
-<script src="http://cn.yjpark.org/js/jquery-1.11.2.min.js"></script>
-<script src="http://cn.yjpark.org/js/bootstrap.min.js"></script>
-<script src="http://cn.yjpark.org/js/main.js"></script>
 
-<script src="http://cn.yjpark.org/js/paper-full.min.js"></script>
-<script type="text/paperscript" src="js/paper-sea.js" canvas="paper-background">
-</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
 
 
 <script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-2120845-10', 'auto');
-ga('send', 'pageview');
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-2120845-10', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 
 

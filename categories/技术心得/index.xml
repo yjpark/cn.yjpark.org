@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>技术心得 on YJ Park 之程序人生</title>
-    <link>http://cn.yjpark.org/categories/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/</link>
+    <link>/categories/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/</link>
     <description>Recent content in 技术心得 on YJ Park 之程序人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
@@ -11,15 +11,15 @@
     <copyright>This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</copyright>
     <lastBuildDate>Thu, 26 Feb 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://cn.yjpark.org/categories/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>游戏开发架构中的数据与元数据</title>
-      <link>http://cn.yjpark.org/blog/2015/02/26/data-and-metadata-in-game-development-architect/</link>
+      <link>/blog/2015/02/26/data-and-metadata-in-game-development-architect/</link>
       <pubDate>Thu, 26 Feb 2015 00:00:00 +0000</pubDate>
       <author>yjpark@gmail.com (YJ Park)</author>
-      <guid>http://cn.yjpark.org/blog/2015/02/26/data-and-metadata-in-game-development-architect/</guid>
+      <guid>/blog/2015/02/26/data-and-metadata-in-game-development-architect/</guid>
       <description>&lt;p&gt;从 2012年4月开始，一直都在开发一款平板电脑上的实时战略类游戏，开发平台是当下比较流行的 Unity3D，网络传输部分基于 uLink。是我自己的第一个 Unity3D 项目，在架构上下了不少功夫，项目相对比较复杂，作为架构师和主要的开发者（技术团队一共3个人，其他两个经验都比较少），工作量着实不小，开发过程还是相当痛苦的，相对应的收获也很不少。&lt;/p&gt;
 
 &lt;p&gt;目前项目的技术部分基本上算是告一段落，下一步更多的是市场和运营的工作，我的重心也会向服务器管理的部分转移，计划陆续把项目中的心得体会在这里用文字的形式保留一下。&lt;/p&gt;
@@ -37,10 +37,10 @@
     
     <item>
       <title>独立游戏程序员生存指南</title>
-      <link>http://cn.yjpark.org/blog/2015/02/23/indie-game-developer-survival-guide/</link>
+      <link>/blog/2015/02/23/indie-game-developer-survival-guide/</link>
       <pubDate>Mon, 23 Feb 2015 00:00:00 +0000</pubDate>
       <author>yjpark@gmail.com (YJ Park)</author>
-      <guid>http://cn.yjpark.org/blog/2015/02/23/indie-game-developer-survival-guide/</guid>
+      <guid>/blog/2015/02/23/indie-game-developer-survival-guide/</guid>
       <description>&lt;h2 id=&#34;缘起&#34;&gt;缘起&lt;/h2&gt;
 
 &lt;p&gt;今年1月的时候，公司协办了一次 Global Game Jam 北京站的活动，说是希望能做个简单的有关游戏开发的介绍，开始没太在意，想着应该是个不太正式的交流，也没怎么准备。结果到了一周前的时候才听说活动规模并不小，至少有100多人会参加，而且我的环节也是更像是演讲类型的。于是多少有些紧张，好久没当众说过话了，开始认真的选题，准备幻灯片。&lt;/p&gt;
